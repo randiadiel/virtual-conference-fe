@@ -1,0 +1,19 @@
+.text-box{
+  border-bottom: 1px solid rgba(#E9E9E9,.6);
+  padding-bottom: 0.5rem;
+  margin-top: 1rem;
+  & > input{
+    border: none;
+    background-color: transparent;
+    color: white;
+    padding-left: 1rem;
+    &:focus{
+      outline: none;
+    }
+  }
+  & > img{
+    height : 1.5rem;
+    width: 1.3rem;
+    filter: contrast(50%);
+  }
+}

@@ -1,11 +1,9 @@
 import React from "react";
-import TextBox from "./components/TextBox";
-
+import LoginPage from "./pages/login/LoginPage"
 const App = () => {
   return (
     <div>
-      <TextBox type="text" placeholder="Name"></TextBox>
-      <TextBox type="text" placeholder="Name" onFormSubmit={handleFormSubmit}></TextBox>
+        <LoginPage></LoginPage>
     </div>
   );
 };

@@ -1,0 +1,21 @@
+.login-page{
+  color: white;
+  background-color: $secondary-black;
+  height: 100vh;
+  & > img{
+    height: 5rem;
+  }
+  & h2{
+    color: $primary-color;
+  }
+  & > span{
+    color: $primary-color;
+    text-transform: capitalize;
+    font-size: 10pt;
+    margin-bottom: 2rem;
+  }
+  & > div > span{
+    color: rgba($secondary-white,.6);
+    margin: 1rem 0;
+  }
+}

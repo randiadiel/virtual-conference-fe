@@ -1,0 +1,61 @@
+$primary-color : #FD8C14;
+$secondary-gray-light : #1E1E1E;
+$secondary-gray-light-altf: #1F1F1F;
+$secondary-black : #121212;
+
+$font-size-small : 10pt;
+$font-size-med : 15pt;
+$font-size-large : 25pt;
+
+.color{
+  &-primary{
+    color: $primary-color;
+  }
+  &-secondary{
+    &-gray{
+      color: $secondary-gray-light;
+    }
+    &-gray-altf{
+      color: $secondary-gray-light-altf;
+    }
+    &-black{
+      color: $secondary-black;
+    }
+    &-white{
+      color: $secondary-white;
+    }
+  }
+  &-bg{
+    &-primary{
+      background-color: $primary-color;
+    }
+    &-secondary{
+      &-gray{
+        background-color: $secondary-gray-light;
+      }
+      &-gray-altf{
+        background-color: $secondary-gray-light-altf;
+      }
+      &-black{
+        background-color: $secondary-black;
+      }
+      &-white{
+        background-color: $secondary-white;
+      }
+    }
+  }
+}
+
+.font{
+  &-size{
+    &-small{
+      font-size: $font-size-small;
+    }
+    &-med{
+      font-size: $font-size-med;
+    }
+    &-large{
+      font-size: $font-size-large;
+    }
+  }
+}
