@@ -1,10 +1,15 @@
 import React from "react";
-import LoginPage from "./pages/login/LoginPage"
+import { Switch, Route, BrowserRouter } from "react-router-dom";
+import LoginPage from "./pages/login/LoginPage";
+import TextBox from "./components/TextBox/TextBox";
 const App = () => {
   return (
-    <div>
-        <LoginPage></LoginPage>
-    </div>
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/" component={TextBox}></Route>
+        <Route exact path="/login" component={LoginPage}></Route>
+      </Switch>
+    </BrowserRouter>
   );
 };
 
