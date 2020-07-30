@@ -1,0 +1,9 @@
+.dashboard-page {
+  display: flex;
+  flex-direction: row;
+  background-color: $secondary-black;
+  &-content {
+    width: 100vw;
+    margin: 2rem 2rem 2rem 0;
+  }
+}

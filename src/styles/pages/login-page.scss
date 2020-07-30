@@ -1,21 +1,35 @@
-.login-page{
+.login-page {
   color: white;
   background-color: $secondary-black;
   height: 100vh;
-  & > img{
+  &-background {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+  }
+  &-dots {
+    position: absolute;
+    height: 100vh;
+    left: 1rem;
+    top: 0;
+  }
+  &-logo {
     height: 5rem;
   }
-  & h2{
+  &-card {
+    z-index: 1;
+  }
+  & h2 {
     color: $primary-color;
   }
-  & > span{
+  & > span {
     color: $primary-color;
     text-transform: capitalize;
     font-size: 10pt;
     margin-bottom: 2rem;
   }
-  & > div > span{
-    color: rgba($secondary-white,.6);
+  & > div > span {
+    color: rgba($secondary-white, 0.6);
     margin: 1rem 0;
   }
 }

@@ -4,6 +4,10 @@
 
 @import "components/text-box";
 @import "components/card";
+@import "components/title-card.scss";
 @import "components/button";
+@import "components/side-bar.scss";
 
 @import "pages/login-page";
+@import "pages/dashboard-page.scss";
+@import "pages/verification-await.scss";

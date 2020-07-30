@@ -8,10 +8,15 @@ import TextBox from "../../components/TextBox/TextBox";
 import Card from "../../components/Card/Index";
 import Button from "../../components/Button/Button";
 
-class LoginPage extends Component {
+class RegisterPage extends Component {
   state = {
+    name: "",
+    phone: "",
+    lineid: "",
     email: "",
     password: "",
+    confirm: "",
+    role: "",
   };
 
   componentDidMount() {}
@@ -27,7 +32,7 @@ class LoginPage extends Component {
   };
 
   render() {
-    const { email, password } = this.state;
+    const { name, phone, lineid, email, password, confirm } = this.state;
     return (
       <div
         className={
@@ -44,15 +49,42 @@ class LoginPage extends Component {
         <span>Acquire Technology Insight to Build Your Remarkable Career</span>
 
         <Card class={"login-page-card d-flex flex-column"}>
-          <h2 className={"text-center mb-3"}>Login</h2>
+          <h2 className={"text-center mb-3"}>Registration</h2>
+          <TextBox
+            placeholder="Full Name"
+            name={"name"}
+            value={name}
+            type={"text"}
+            onChange={this.onChange}
+            icon={EmailImage}
+            alt={"Name Image"}
+          ></TextBox>
+          <TextBox
+            placeholder="Whatsapp Number"
+            name={"phone"}
+            type={"text"}
+            value={phone}
+            onChange={this.onChange}
+            icon={PasswordImage}
+            alt={"Phone Image"}
+          ></TextBox>
+          <TextBox
+            placeholder="Line ID"
+            name={"lineid"}
+            type={"text"}
+            value={lineid}
+            onChange={this.onChange}
+            icon={PasswordImage}
+            alt={"Line Image"}
+          ></TextBox>
           <TextBox
             placeholder="Email"
             name={"email"}
-            value={email}
             type={"email"}
+            value={email}
             onChange={this.onChange}
             icon={EmailImage}
-            alt={"Group Image"}
+            alt={"Email Image"}
           ></TextBox>
           <TextBox
             placeholder="Password"
@@ -63,16 +95,22 @@ class LoginPage extends Component {
             icon={PasswordImage}
             alt={"Password Image"}
           ></TextBox>
-          <span className="align-self-end font-size-small">
-            Forgot password?
-          </span>
-          <Button onClick={this.handleSubmitForm}>Login</Button>
+          <TextBox
+            placeholder="Confirm Password"
+            name={"confirm"}
+            type={"text"}
+            value={confirm}
+            onChange={this.onChange}
+            icon={PasswordImage}
+            alt={"Confirm Image"}
+          ></TextBox>
+          <Button onClick={this.handleSubmitForm}>Continue</Button>
           <span className="text-center">
-            <span className="color-primary">Not registered?</span> Click here!
+            <span className="color-primary">Have An Account?</span> Click here!
           </span>
         </Card>
       </div>
     );
   }
 }
-export default LoginPage;
+export default RegisterPage;
