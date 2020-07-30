@@ -1,6 +1,7 @@
 @import "~bootstrap";
 @import "variable";
 @import "utils";
+@import "fonts";
 
 @import "components/text-box";
 @import "components/card";
@@ -11,3 +12,4 @@
 @import "pages/login-page";
 @import "pages/dashboard-page.scss";
 @import "pages/verification-await.scss";
+@import "pages/schedule-item.scss";

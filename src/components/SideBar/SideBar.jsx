@@ -9,7 +9,9 @@ class SideBar extends Component {
     return (
       <Card class="side-bar d-flex flex-column align-items-center">
         <img src={Logo} alt="Technoscape Logo" />
-        <h4>Hello, {team}</h4>
+        <h4>
+          Hello, <span>{team}</span>
+        </h4>
         <h6>Verified</h6>
         <Link className="side-bar-button" to="/login">
           <svg

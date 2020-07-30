@@ -5,6 +5,7 @@ import Card from "../../components/Card/Index";
 import LoginPage from "../login/LoginPage";
 import VerificationAwait from "../verification/VerificationAwait";
 import TitleCard from "../../components/TitleCard/TitleCard";
+import SchedulePage from "../schedule/SchedulePage";
 
 class DashboardPage extends Component {
   render() {
@@ -12,7 +13,8 @@ class DashboardPage extends Component {
       <div className="dashboard-page">
         <SideBar team="Randi"></SideBar>
         <Card class="dashboard-page-content">
-          <TitleCard title="Verification"></TitleCard>
+          <SchedulePage></SchedulePage>
+          {/* <VerificationAwait></VerificationAwait> */}
         </Card>
       </div>
     );

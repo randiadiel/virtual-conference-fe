@@ -8,5 +8,9 @@
   text-align: center;
   & > h1 {
     color: $primary-color;
+    font-family: "Gilroy-Bold";
+  }
+  & > span {
+    font-family: "Gilroy-Medium";
   }
 }

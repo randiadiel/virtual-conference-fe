@@ -1,0 +1,29 @@
+.schedule-item {
+  display: flex;
+  &-number {
+    padding: 1rem 3rem;
+    margin: 1rem;
+    color: $primary-color;
+    font-size: 4rem;
+    font-family: "Gilroy-Bold";
+  }
+  &-content {
+    color: $primary-color;
+    width: 100%;
+    margin: 1rem;
+    font-family: "Gilroy-Medium";
+    display: flex;
+    & > div {
+      display: flex;
+      flex-direction: column;
+      margin-right: 1rem;
+    }
+    & .title {
+      font-family: "Gilroy-Bold";
+    }
+    & .description {
+      color: $secondary-white;
+      text-decoration: none;
+    }
+  }
+}
