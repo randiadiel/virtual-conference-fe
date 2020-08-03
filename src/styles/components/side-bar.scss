@@ -28,11 +28,29 @@
       font-family: "Gilroy-Bold";
     }
   }
+  & .button-active {
+    color: $primary-color;
+    & > svg path {
+      fill: $primary-color;
+    }
+  }
   &-button:hover {
     color: $primary-color;
     text-decoration: none;
     & > svg path {
       fill: $primary-color;
+    }
+  }
+  & .is-disabled {
+    color: $secondary-gray;
+    cursor: not-allowed;
+    opacity: 0.5;
+    text-decoration: none;
+    & > svg path {
+      fill: $secondary-gray !important;
+    }
+    &:hover > svg path {
+      fill: $secondary-gray !important;
     }
   }
 }

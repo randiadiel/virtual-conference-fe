@@ -1,0 +1,54 @@
+.payment-page {
+  color: $primary-color;
+  & h2 {
+    font-family: "Gilroy-Bold";
+    text-align: center;
+  }
+  & .header {
+    margin-top: 2rem;
+  }
+  & .title {
+    display: flex;
+    justify-content: space-between;
+    color: $secondary-gray;
+    & > span {
+      font-size: $font-size-med;
+      font-family: "Gilroy-SemiBold";
+    }
+  }
+  & .ticket {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+    & h2 {
+      color: $secondary-white;
+    }
+    & > span {
+      display: flex;
+      & span {
+        font-family: "Gilroy-Bold";
+        color: $secondary-gray;
+        margin-right: 0.5rem;
+      }
+    }
+  }
+  & .white-lines {
+    border-color: $secondary-white;
+  }
+  & .orderid {
+    display: flex;
+    justify-content: space-between;
+    color: $secondary-white;
+    & > span {
+      font-size: $font-size-med;
+      font-family: "Gilroy-SemiBold";
+    }
+  }
+  & .outer-list,
+  & .inner-list {
+    color: $secondary-white;
+    & > li {
+      margin-top: 1rem;
+    }
+  }
+}

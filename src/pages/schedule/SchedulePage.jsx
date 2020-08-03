@@ -23,12 +23,6 @@ class SchedulePage extends Component {
         time: "25 Januari 2020",
         link: "meet.google.com/ssssasasss",
       },
-      {
-        id: "4",
-        topic: "Halo aja",
-        time: "25 Januari 2020",
-        link: "meet.google.com/ssssasasss",
-      },
     ],
   };
   render() {

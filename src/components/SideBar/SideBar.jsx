@@ -1,11 +1,13 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import Card from "../Card/Index";
 import Logo from "../../assets/Logo/logo-technoscape-virtualcon.png";
 
 class SideBar extends Component {
   render() {
-    const { team } = this.props;
+    const { team, location } = this.props;
+    let path = location.pathname;
+    let top = path.split("/");
     return (
       <Card class="side-bar d-flex flex-column align-items-center">
         <img src={Logo} alt="Technoscape Logo" />
@@ -13,7 +15,16 @@ class SideBar extends Component {
           Hello, <span>{team}</span>
         </h4>
         <h6>Verified</h6>
-        <Link className="side-bar-button" to="/login">
+        <Link
+          className={`side-bar-button ${
+            top[2] === "schedule"
+              ? "button-active"
+              : top[2] === "verification"
+              ? "is-disabled"
+              : ""
+          }`}
+          to="/admin/schedule"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="83.724"
@@ -30,7 +41,16 @@ class SideBar extends Component {
           </svg>
           <span>Seminar Schedules</span>
         </Link>
-        <Link className="side-bar-button" to="/login">
+        <Link
+          className={`side-bar-button ${
+            top[2] === "payment"
+              ? "button-active"
+              : top[2] === "verification"
+              ? "is-disabled"
+              : ""
+          }`}
+          to="/admin/payment"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="98"
@@ -107,7 +127,7 @@ class SideBar extends Component {
 
           <span>Payment</span>
         </Link>
-        <Link className="side-bar-button" to="/login">
+        <Link className="side-bar-button" to="/logout">
           <svg
             id="XMLID_2_"
             xmlns="http://www.w3.org/2000/svg"
@@ -135,4 +155,4 @@ class SideBar extends Component {
   }
 }
 
-export default SideBar;
+export default withRouter(SideBar);
