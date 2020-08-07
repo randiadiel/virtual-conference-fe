@@ -45,7 +45,7 @@ class PaymentPage extends Component {
           <h2 className="header">Upload Payment Receipt</h2>
           <div></div>
           <div>
-            <input type="file" name="image" id="" />
+            <input type="file" name="image" id="payment_image" />
           </div>
           <div>File Name: </div>
           <div>Status: </div>

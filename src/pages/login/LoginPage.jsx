@@ -14,7 +14,8 @@ class LoginPage extends Component {
   state = {
     email: "",
     password: "",
-    isLoggedIn: false,
+    isLoggedIn: "false",
+    error: [],
   };
 
   componentDidMount() {}
@@ -39,17 +40,33 @@ class LoginPage extends Component {
         JSON.stringify(promise.message.original)
       );
       alert(JSON.stringify(promise));
+      if (
+        promise.message.original.user.role_id === 2 &&
+        promise.message.original.user.flazz
+      ) {
+        this.setState({ isLoggedIn: "verification" });
+      } else if (promise.message.original.user.role_id === 1) {
+        this.setState({ isLoggedIn: "admin" });
+      } else if (promise.message.original.user.role_id === 2) {
+        this.setState({ isLoggedIn: "participant" });
+      } else if (promise.message.original.user.role_id === 3) {
+        this.setState({ isLoggedIn: "binusian" });
+      }
       this.setState({ isLoggedIn: true });
+    } else if (status === 422) {
+      this.setState({ error: message.original, status: 422 });
     } else {
-      alert(message.original.error);
-      this.setState({ message });
+      this.setState({ error: message.original.error, status: 401 });
     }
   };
 
   render() {
-    const { email, password, isLoggedIn } = this.state;
-    if (isLoggedIn == true)
-      return <Redirect to="/admin/verification"></Redirect>;
+    const { email, password, isLoggedIn, error, status } = this.state;
+    if (isLoggedIn === "verification")
+      return <Redirect to="/dashboard/verification"></Redirect>;
+    if (isLoggedIn === "admin") return <Redirect to="/admin/panel"></Redirect>;
+    if (isLoggedIn === "participant" || isLoggedIn === "binusian")
+      return <Redirect to="/dashboard/schedule"></Redirect>;
     return (
       <div
         className={
@@ -67,28 +84,40 @@ class LoginPage extends Component {
 
         <Card class={"login-page-card d-flex flex-column"}>
           <h2 className={"text-center mb-3"}>Login</h2>
-          <TextBox
-            placeholder="Email"
-            name={"email"}
-            value={email}
-            type={"email"}
-            onChange={this.onChange}
-            icon={EmailImage}
-            alt={"Group Image"}
-          ></TextBox>
-          <TextBox
-            placeholder="Password"
-            name={"password"}
-            type={"password"}
-            value={password}
-            onChange={this.onChange}
-            icon={PasswordImage}
-            alt={"Password Image"}
-          ></TextBox>
-          <span className="align-self-end font-size-small">
-            Forgot password?
-          </span>
-          <Button onClick={this.handleSubmitForm}>Login</Button>
+          <form onSubmit={this.handleSubmitForm}>
+            {error.length === 0 ? (
+              ""
+            ) : (
+              <div class="alert alert-danger" role="alert">
+                {status === 401 ? (
+                  <div>{error}</div>
+                ) : (
+                  Object.values(error).map((e) => e.map((e) => <div>{e}</div>))
+                )}
+              </div>
+            )}
+            <TextBox
+              placeholder="Email"
+              name={"email"}
+              value={email}
+              type={"email"}
+              onChange={this.onChange}
+              icon={EmailImage}
+              alt={"Group Image"}
+            ></TextBox>
+            <TextBox
+              placeholder="Password"
+              name={"password"}
+              type={"password"}
+              value={password}
+              onChange={this.onChange}
+              icon={PasswordImage}
+              alt={"Password Image"}
+            ></TextBox>
+            <span className="align-self-end font-size-small p-1"></span>
+            <input style={{ display: "none" }} type="submit" />
+            <Button onClick={this.handleSubmitForm}>Login</Button>
+          </form>
           <span className="text-center">
             <span className="color-primary">Not registered?</span> Click here!
           </span>

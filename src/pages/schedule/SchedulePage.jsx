@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import TitleCard from "../../components/TitleCard/TitleCard";
 import ScheduleItem from "./ScheduleItem";
 import API from "../../api/Api";
+import AuthServices from "../../auth/AuthServices";
+import VerificationPayment from "../verification/VerificationPayment";
 
 class SchedulePage extends Component {
   state = {
@@ -14,6 +16,10 @@ class SchedulePage extends Component {
   render() {
     const { schedules } = this.state;
     var number = 0;
+    const user = AuthServices.getUserInfo();
+    if (user.user.payment_id == null) {
+      return <VerificationPayment></VerificationPayment>;
+    }
     return (
       <TitleCard title="Seminar Schedules">
         {schedules.map((e) => {

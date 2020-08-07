@@ -27,7 +27,7 @@ class SideBar extends Component {
               ? "is-disabled"
               : ""
           }`}
-          to="/admin/schedule"
+          to="/dashboard/schedule"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -53,7 +53,7 @@ class SideBar extends Component {
               ? "is-disabled"
               : ""
           }`}
-          to="/admin/payment"
+          to="/dashboard/payment"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
