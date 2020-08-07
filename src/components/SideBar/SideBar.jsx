@@ -2,8 +2,12 @@ import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
 import Card from "../Card/Index";
 import Logo from "../../assets/Logo/logo-technoscape-virtualcon.png";
+import AuthServices from "../../auth/AuthServices";
 
 class SideBar extends Component {
+  handleLogout = () => {
+    AuthServices.logout();
+  };
   render() {
     const { team, location } = this.props;
     let path = location.pathname;
@@ -127,7 +131,7 @@ class SideBar extends Component {
 
           <span>Payment</span>
         </Link>
-        <Link className="side-bar-button" to="/logout">
+        <Link className="side-bar-button" onClick={this.handleLogout}>
           <svg
             id="XMLID_2_"
             xmlns="http://www.w3.org/2000/svg"

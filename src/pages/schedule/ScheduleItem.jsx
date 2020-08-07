@@ -16,7 +16,9 @@ class ScheduleItem extends Component {
           <div>
             <span className="description">{topic}</span>
             <span className="description">{time}</span>
-            <span className="description">{link}</span>
+            <a href={link} className="description">
+              {link}
+            </a>
           </div>
         </Card>
       </div>

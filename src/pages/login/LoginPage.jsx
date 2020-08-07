@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import AuthServices from "../../auth/AuthServices";
 import EmailImage from "../../assets/LoginIcon/login-email.svg";
 import PasswordImage from "../../assets/LoginIcon/icon-password.png";
 import Logo from "../../assets/Logo/logo-technoscape-virtualcon.png";
@@ -7,11 +8,13 @@ import Dots from "../../assets/LoginPage/login-bg-dots.png";
 import TextBox from "../../components/TextBox/TextBox";
 import Card from "../../components/Card/Index";
 import Button from "../../components/Button/Button";
+import { Redirect } from "react-router-dom";
 
 class LoginPage extends Component {
   state = {
     email: "",
     password: "",
+    isLoggedIn: false,
   };
 
   componentDidMount() {}
@@ -21,13 +24,32 @@ class LoginPage extends Component {
     this.setState({ [target.name]: target.value });
   };
 
-  handleSubmitForm = (e) => {
+  handleSubmitForm = async (e) => {
     e.preventDefault();
-    alert("yey");
+    const { email, password } = this.state;
+    const credential = {
+      email,
+      password,
+    };
+    const promise = await AuthServices.login(credential);
+    const { message, status } = promise;
+    if (status === 200) {
+      localStorage.setItem(
+        "userInfo",
+        JSON.stringify(promise.message.original)
+      );
+      alert(JSON.stringify(promise));
+      this.setState({ isLoggedIn: true });
+    } else {
+      alert(message.original.error);
+      this.setState({ message });
+    }
   };
 
   render() {
-    const { email, password } = this.state;
+    const { email, password, isLoggedIn } = this.state;
+    if (isLoggedIn == true)
+      return <Redirect to="/admin/verification"></Redirect>;
     return (
       <div
         className={
