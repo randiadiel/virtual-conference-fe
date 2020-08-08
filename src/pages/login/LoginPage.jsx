@@ -19,6 +19,10 @@ class LoginPage extends Component {
   };
 
   componentDidMount() {}
+  clearLocal = () => {
+    AuthServices.logout();
+    alert("done");
+  };
 
   onChange = (e) => {
     const target = e.target;
@@ -35,28 +39,25 @@ class LoginPage extends Component {
     const promise = await AuthServices.login(credential);
     const { message, status } = promise;
     if (status === 200) {
-      localStorage.setItem(
-        "userInfo",
-        JSON.stringify(promise.message.original)
-      );
+      localStorage.setItem("userInfo", JSON.stringify(promise.data.original));
       alert(JSON.stringify(promise));
       if (
-        promise.message.original.user.role_id === 2 &&
-        promise.message.original.user.flazz
+        promise.data.original.user.role_id === 2 &&
+        promise.data.original.user.flazz
       ) {
         this.setState({ isLoggedIn: "verification" });
-      } else if (promise.message.original.user.role_id === 1) {
+      } else if (promise.data.original.user.role_id === 1) {
         this.setState({ isLoggedIn: "admin" });
-      } else if (promise.message.original.user.role_id === 2) {
+      } else if (promise.data.original.user.role_id === 2) {
         this.setState({ isLoggedIn: "participant" });
-      } else if (promise.message.original.user.role_id === 3) {
+      } else if (promise.data.original.user.role_id === 3) {
         this.setState({ isLoggedIn: "binusian" });
       }
-      this.setState({ isLoggedIn: true });
+      this.setState({ isLoggedIn: "participant" });
     } else if (status === 422) {
-      this.setState({ error: message.original, status: 422 });
+      this.setState({ error: promise.data.original, status: 422 });
     } else {
-      this.setState({ error: message.original.error, status: 401 });
+      this.setState({ error: promise.data.original.error, status: 401 });
     }
   };
 
@@ -88,7 +89,7 @@ class LoginPage extends Component {
             {error.length === 0 ? (
               ""
             ) : (
-              <div class="alert alert-danger" role="alert">
+              <div className="alert alert-danger" role="alert">
                 {status === 401 ? (
                   <div>{error}</div>
                 ) : (

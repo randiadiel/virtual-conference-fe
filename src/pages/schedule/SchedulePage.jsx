@@ -11,13 +11,14 @@ class SchedulePage extends Component {
   };
   async componentDidMount() {
     const promise = await API.handleGet("/auth/seminars", true);
-    this.setState({ schedules: promise.message });
+    this.setState({ schedules: promise.data });
   }
   render() {
     const { schedules } = this.state;
     var number = 0;
-    const user = AuthServices.getUserInfo();
-    if (user.user.payment_id == null) {
+    const user = AuthServices.getUserInfo().user;
+    console.log(user);
+    if (user.payment_id === null || user.Payment.status === 0) {
       return <VerificationPayment></VerificationPayment>;
     }
     return (

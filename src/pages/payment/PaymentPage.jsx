@@ -1,9 +1,30 @@
 import React, { Component } from "react";
 import TitleCard from "../../components/TitleCard/TitleCard";
 import Button from "../../components/Button/Button";
+import FileUpload from "../../components/FileUpload/FileUpload";
+import AuthServices from "../../auth/AuthServices";
+import Api from "../../api/Api";
 
 class PaymentPage extends Component {
+  state = {
+    file: { size: 0, name: "Choose File" },
+  };
+  constructor(props) {
+    super(props);
+    this.fileInput = React.createRef();
+  }
+  handleFileChange = () => {
+    this.setState({ file: this.fileInput.current.files[0] });
+  };
+  handleFileSubmit = () => {
+    let form_data = new FormData();
+    form_data.append("image", this.state.file, this.state.file.name);
+    const promise = Api.handleFormDataPost("/auth/payment", form_data, true);
+    console.log(promise);
+  };
   render() {
+    const user = AuthServices.getUserInfo().user;
+    const { file } = this.state;
     return (
       <div className="payment-page">
         <TitleCard title="Payment">
@@ -43,12 +64,29 @@ class PaymentPage extends Component {
             </ol>
           </ol>
           <h2 className="header">Upload Payment Receipt</h2>
-          <div></div>
-          <div>
-            <input type="file" name="image" id="payment_image" />
+          <div className="row">
+            <div className="col-lg-6 col-xl-4">
+              <FileUpload
+                onChange={this.handleFileChange}
+                reference={this.fileInput}
+                label={file.name}
+              ></FileUpload>
+            </div>
           </div>
-          <div>File Name: </div>
-          <div>Status: </div>
+          <div className="file-status">
+            <div>Size: {file.size} B</div>
+            <Button onClick={this.handleFileSubmit}>Upload</Button>
+
+            <div>
+              File :{" "}
+              <a href={user.Payment.image} target="_blank">
+                {user.Payment.name}
+              </a>
+            </div>
+            <div>
+              Status : {user.Payment.status === 0 ? "Unverified" : "Verified"}
+            </div>
+          </div>
         </TitleCard>
       </div>
     );
