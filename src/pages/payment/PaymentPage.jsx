@@ -15,6 +15,8 @@ class PaymentPage extends Component {
       name: "",
       status: 0,
     },
+    flazz: "",
+    id: 0,
   };
   constructor(props) {
     super(props);
@@ -29,7 +31,7 @@ class PaymentPage extends Component {
         name: user.Payment.name,
         status: user.Payment.status,
       };
-      this.setState({ payment });
+      this.setState({ payment, flazz: user.flazz, id: user.id });
     }
   }
   handleFileChange = () => {
@@ -61,20 +63,7 @@ class PaymentPage extends Component {
     }
   };
   render() {
-    const user = AuthServices.getUserInfo().user;
-    let payment_image;
-    let payment_name;
-    let payment_status;
-    if (user.payment_id === null) {
-      payment_image = "";
-      payment_name = "";
-      payment_status = 0;
-    } else {
-      payment_image = user.Payment.image;
-      payment_name = user.Payment.name;
-      payment_status = user.Payment.status;
-    }
-    const { file, error, payment } = this.state;
+    const { file, error, payment, flazz, id } = this.state;
     return (
       <div className="payment-page">
         <TitleCard title="Payment">
@@ -87,13 +76,13 @@ class PaymentPage extends Component {
             <h2>3 Day Pass</h2>
             <span>
               <span>Rp</span>
-              <h2>30.000</h2>
+              <h2>{flazz === "" ? "50.000" : "30.000"}</h2>
             </span>
           </div>
           <hr className="white-lines" />
           <div className="orderid">
             <span>Order ID</span>
-            <span>98754443</span>
+            <span>VC-BNCC-4357</span>
           </div>
           <h2 className="header">Payment Method Instructions</h2>
           <ol className="outer-list">

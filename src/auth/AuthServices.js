@@ -27,6 +27,7 @@ class AuthServices {
   }
 
   logout() {
+    axios.post("/auth/logout", {}, this.getAuthHeader());
     localStorage.removeItem("userInfo");
     localStorage.clear();
   }
