@@ -4,27 +4,77 @@ import Button from "../../components/Button/Button";
 import FileUpload from "../../components/FileUpload/FileUpload";
 import AuthServices from "../../auth/AuthServices";
 import Api from "../../api/Api";
+import payment_qr from "../../assets/Payment/payment_qr.jpg";
 
 class PaymentPage extends Component {
   state = {
     file: { size: 0, name: "Choose File" },
+    error: "",
+    payment: {
+      imamge: "",
+      name: "",
+      status: 0,
+    },
   };
   constructor(props) {
     super(props);
     this.fileInput = React.createRef();
   }
+  componentDidMount() {
+    const user = AuthServices.getUserInfo().user;
+    if (user.payment_id === null) {
+    } else {
+      const payment = {
+        image: user.Payment.image,
+        name: user.Payment.name,
+        status: user.Payment.status,
+      };
+      this.setState({ payment });
+    }
+  }
   handleFileChange = () => {
     this.setState({ file: this.fileInput.current.files[0] });
   };
-  handleFileSubmit = () => {
-    let form_data = new FormData();
-    form_data.append("image", this.state.file, this.state.file.name);
-    const promise = Api.handleFormDataPost("/auth/payment", form_data, true);
-    console.log(promise);
+  handleFileSubmit = async () => {
+    if (this.state.file.size === 0)
+      this.setState({ error: "Please Upload a File" });
+    else {
+      let form_data = new FormData();
+      form_data.append("image", this.state.file, this.state.file.name);
+      const promise = await Api.handleFormDataPost(
+        "/auth/payment",
+        form_data,
+        true
+      );
+
+      if (promise.status === 201) {
+        this.setState({ file: { size: 0, name: "Choose File" }, error: "" });
+        Api.refresh();
+        const payment = {
+          image: promise.data[0].image,
+          name: promise.data[0].name,
+          status: promise.data[0].status,
+        };
+        console.log(payment);
+        this.setState({ payment: payment });
+      }
+    }
   };
   render() {
     const user = AuthServices.getUserInfo().user;
-    const { file } = this.state;
+    let payment_image;
+    let payment_name;
+    let payment_status;
+    if (user.payment_id === null) {
+      payment_image = "";
+      payment_name = "";
+      payment_status = 0;
+    } else {
+      payment_image = user.Payment.image;
+      payment_name = user.Payment.name;
+      payment_status = user.Payment.status;
+    }
+    const { file, error, payment } = this.state;
     return (
       <div className="payment-page">
         <TitleCard title="Payment">
@@ -47,29 +97,56 @@ class PaymentPage extends Component {
           </div>
           <h2 className="header">Payment Method Instructions</h2>
           <ol className="outer-list">
-            <li>balbsdlfbaskldbfajsdb;fjabsdfj;asdb;</li>
             <li>
-              jfaskdjfk;jasdkfjaskldjfkajsdf;klajsd;klfjas;dklfja;lkdjfl;kadsj
+              Periode Pembayaran : 9 Agustus 2020 hingga 9 September 2020 jam
+              21.00
             </li>
-            <ol className="inner-list">
-              <li>
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Culpa
-                consequatur, obc
-              </li>
-              <li>
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis
-                dolorem ratione nulla dignissimos incidunt aliquam ducimus totam
-                est sequi atque.
-              </li>
-            </ol>
+            <li>
+              Lakukan pembayaran biaya pendaftaran melalui QR code atau ke nomor
+              rekening berikut:
+            </li>
+            <div>
+              <div>Nomor Rekening : 5271675071</div>
+              <div>Bank : BCA</div>
+              <div>Atas Nama : ANNISA VINIDYA LARASATI</div>
+              <img className="w-25" src={payment_qr} alt="QRCODE - BCA" />
+            </div>
+            <li>
+              Peserta mengunggah file bukti pembayaran dengan batas maksimum 5
+              mb dalam bentuk .JPG, .JPEG, .PNG, atau .PDF.
+            </li>
+            <li>
+              Calon peserta yang telah mengupload bukti pembayaran akan memiliki
+              status Pending dan akan diverifikasi oleh panitia dalam rentang
+              waktu 24 jam. Apabila calon peserta belum diverifikasi dalam
+              rentang waktu tersebut, calon peserta dapat menghubungi panitia
+              melalui Contact Person.
+            </li>
+            <li>
+              Pendaftar yang telah terverifikasi akan secara resmi terdaftar
+              menjadi calon peserta Virtual Conference.
+            </li>
+            <li>
+              Setelah terverifikasi, peserta dapat melihat link ke Virtual
+              Conference di Dashboard pada H-1 Virtual Conference.
+            </li>
           </ol>
+
           <h2 className="header">Upload Payment Receipt</h2>
           <div className="row">
             <div className="col-lg-6 col-xl-4">
+              {error !== "" ? (
+                <div className="alert alert-danger" role="alert">
+                  {error}
+                </div>
+              ) : (
+                <div></div>
+              )}
               <FileUpload
                 onChange={this.handleFileChange}
                 reference={this.fileInput}
                 label={file.name}
+                id="payment_image"
               ></FileUpload>
             </div>
           </div>
@@ -77,15 +154,25 @@ class PaymentPage extends Component {
             <div>Size: {file.size} B</div>
             <Button onClick={this.handleFileSubmit}>Upload</Button>
 
-            <div>
-              File :{" "}
-              <a href={user.Payment.image} target="_blank">
-                {user.Payment.name}
-              </a>
-            </div>
-            <div>
-              Status : {user.Payment.status === 0 ? "Unverified" : "Verified"}
-            </div>
+            {payment.image === "" ? (
+              "Not yet Uploaded"
+            ) : (
+              <div>
+                <div>
+                  File :{" "}
+                  <a
+                    href={payment.image}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {payment.name}
+                  </a>
+                </div>
+                <div>
+                  Status : {payment.status === 0 ? "Unverified" : "Verified"}
+                </div>
+              </div>
+            )}
           </div>
         </TitleCard>
       </div>

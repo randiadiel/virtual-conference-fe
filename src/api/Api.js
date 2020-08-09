@@ -3,6 +3,22 @@ import { API } from "./ApiConfig";
 import AuthServices from "../auth/AuthServices";
 
 class Api {
+  refresh = async () => {
+    const promise = new Promise((resolve, reject) => {
+      axios
+        .post(API.BASE_URL + "/auth/refresh", {}, AuthServices.getAuthHeader())
+        .then(
+          (res) => {
+            resolve(res.data);
+          },
+          (err) => {
+            reject(err);
+          }
+        );
+    });
+    const data = await promise;
+    localStorage.setItem("userInfo", JSON.stringify(data.data.original));
+  };
   handleFormDataPost = async (endpoint, form_data, isPrivate) => {
     let url = API.BASE_URL + endpoint;
     let headers;

@@ -8,7 +8,7 @@ import Dots from "../../assets/LoginPage/login-bg-dots.png";
 import TextBox from "../../components/TextBox/TextBox";
 import Card from "../../components/Card/Index";
 import Button from "../../components/Button/Button";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 
 class LoginPage extends Component {
   state = {
@@ -81,7 +81,9 @@ class LoginPage extends Component {
           alt="Liquid Background"
         />
         <img className="login-page-logo" src={Logo} alt="Logo" />
-        <span>Acquire Technology Insight to Build Your Remarkable Career</span>
+        <span className="login-page-description">
+          Acquire Technology Insight to Build Your Remarkable Career
+        </span>
 
         <Card class={"login-page-card d-flex flex-column"}>
           <h2 className={"text-center mb-3"}>Login</h2>
@@ -120,7 +122,8 @@ class LoginPage extends Component {
             <Button onClick={this.handleSubmitForm}>Login</Button>
           </form>
           <span className="text-center">
-            <span className="color-primary">Not registered?</span> Click here!
+            <span className="color-primary">Not registered?</span>{" "}
+            <Link to="/register">Click here!</Link>
           </span>
         </Card>
       </div>

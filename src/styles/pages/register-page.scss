@@ -1,24 +1,13 @@
-.login-page {
+.register-page {
   color: white;
   background-color: $secondary-black;
-  height: 100vh;
-  &-background {
-    position: absolute;
-    width: 100vw;
-    height: 100vh;
-  }
-  &-dots {
-    position: absolute;
-    height: 100vh;
-    left: 1rem;
-    top: 0;
+  & .button {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
   }
   &-logo {
     height: 5rem;
-    z-index: 1;
-  }
-  &-description {
-    z-index: 1;
   }
   &-card {
     z-index: 1;
