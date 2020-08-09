@@ -40,7 +40,6 @@ class LoginPage extends Component {
     const { message, status } = promise;
     if (status === 200) {
       localStorage.setItem("userInfo", JSON.stringify(promise.data.original));
-      alert(JSON.stringify(promise));
       if (
         promise.data.original.user.role_id === 2 &&
         promise.data.original.user.flazz
