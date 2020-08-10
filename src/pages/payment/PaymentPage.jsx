@@ -11,7 +11,7 @@ class PaymentPage extends Component {
     file: { size: 0, name: "Choose File" },
     error: "",
     payment: {
-      imamge: "",
+      image: "",
       name: "",
       status: 0,
     },
@@ -76,7 +76,7 @@ class PaymentPage extends Component {
             <h2>3 Day Pass</h2>
             <span>
               <span>Rp</span>
-              <h2>{flazz === "" ? "50.000" : "30.000"}</h2>
+              <h2>{flazz === "" ? "50.000" : "35.000"}</h2>
             </span>
           </div>
           <hr className="white-lines" />
