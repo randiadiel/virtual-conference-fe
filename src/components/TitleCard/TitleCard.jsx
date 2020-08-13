@@ -6,7 +6,7 @@ export default function TitleCard(props) {
     <div className="title-card">
       <h1>{title}</h1>
       <hr />
-      <div>{children}</div>
+      <div className="title-card-container">{children}</div>
     </div>
   );
 }

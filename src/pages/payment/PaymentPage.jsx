@@ -67,22 +67,24 @@ class PaymentPage extends Component {
     return (
       <div className="payment-page">
         <TitleCard title="Payment">
-          <h2>Order Details</h2>
-          <div className="title">
-            <span>Item</span>
-            <span>Amount</span>
-          </div>
-          <div className="ticket">
-            <h2>3 Day Pass</h2>
-            <span>
-              <span>Rp</span>
-              <h2>{flazz === "" ? "50.000" : "35.000"}</h2>
-            </span>
-          </div>
-          <hr className="white-lines" />
-          <div className="orderid">
-            <span>Order ID</span>
-            <span>VC-BNCC-4357</span>
+          <div className="ticket-card">
+            <h2>Order Details</h2>
+            <div className="title">
+              <span>Item</span>
+              <span>Amount</span>
+            </div>
+            <div className="ticket">
+              <h2>3 Day Pass</h2>
+              <span>
+                <span>Rp</span>
+                <h2>{flazz === "" ? "50.000" : "35.000"}</h2>
+              </span>
+            </div>
+            <hr className="white-lines" />
+            <div className="orderid">
+              <span>Order ID</span>
+              <span>VC-BNCC-4357</span>
+            </div>
           </div>
           <h2 className="header">Payment Method Instructions</h2>
           <ol className="outer-list">

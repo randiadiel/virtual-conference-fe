@@ -64,7 +64,7 @@ class LoginPage extends Component {
     const { email, password, isLoggedIn, error, status } = this.state;
     if (isLoggedIn === "verification")
       return <Redirect to="/dashboard/verification"></Redirect>;
-    if (isLoggedIn === "admin") return <Redirect to="/admin/panel"></Redirect>;
+    if (isLoggedIn === "admin") return <Redirect to="/admin/user"></Redirect>;
     if (isLoggedIn === "participant" || isLoggedIn === "binusian")
       return <Redirect to="/dashboard/schedule"></Redirect>;
     return (

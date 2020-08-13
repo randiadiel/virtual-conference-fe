@@ -1,5 +1,8 @@
 .payment-page {
   color: $primary-color;
+  & .ticket-card {
+    width: 100%;
+  }
   & h2 {
     font-family: "Gilroy-Bold";
     text-align: center;

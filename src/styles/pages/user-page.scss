@@ -1,0 +1,8 @@
+.user-page {
+  & .title-card-container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+}
