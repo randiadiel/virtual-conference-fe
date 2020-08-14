@@ -1,7 +1,23 @@
 .payment-page {
   color: $primary-color;
+
+  &-qr{
+    @include media-breakpoint-up(md){
+      & > img{
+        width: 30%;
+      }
+    }
+    @include media-breakpoint-down(sm){
+      width: 100%;
+      & > img {
+        width: 100%;
+      }
+    }
+
+  }
   & .ticket-card {
     width: 100%;
+
   }
   & h2 {
     font-family: "Gilroy-Bold";
@@ -15,7 +31,7 @@
     justify-content: space-between;
     color: $secondary-gray;
     & > span {
-      font-size: $font-size-med;
+      @include font-size($font-size-small);
       font-family: "Gilroy-SemiBold";
     }
   }

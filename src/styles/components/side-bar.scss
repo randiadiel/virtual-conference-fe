@@ -7,6 +7,10 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  @include media-breakpoint-only(md){
+  height: fit-content;
+    width: 90%;
+  }
   & > h4 > span {
     font-family: "Gilroy-Bold";
   }
@@ -20,8 +24,13 @@
     flex-direction: column;
     align-items: center;
     color: $secondary-white;
+
     & > svg {
       width: 5rem;
+      @include media-breakpoint-down(md){
+        width: 3rem;
+        height: 5rem;
+      }
     }
     & > span {
       text-decoration: none;

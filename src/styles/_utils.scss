@@ -3,10 +3,6 @@ $secondary-gray-light: #1e1e1e;
 $secondary-gray-light-altf: #1f1f1f;
 $secondary-black: #121212;
 
-$font-size-small: 10pt;
-$font-size-med: 15pt;
-$font-size-large: 25pt;
-
 .color {
   &-primary {
     color: $primary-color;
@@ -49,13 +45,13 @@ $font-size-large: 25pt;
 .font {
   &-size {
     &-small {
-      font-size: $font-size-small;
+      @include font-size($font-size-small);
     }
     &-med {
-      font-size: $font-size-med;
+      @include font-size($font-size-med);
     }
     &-large {
-      font-size: $font-size-large;
+      @include font-size($font-size-large);
     }
   }
 }

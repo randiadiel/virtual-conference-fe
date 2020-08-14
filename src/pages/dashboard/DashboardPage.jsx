@@ -30,7 +30,7 @@ class DashboardPage extends Component {
   render() {
     const { user, success } = this.state;
     return (
-      <div className="dashboard-page">
+      <div className="dashboard-page d-flex flex-column justify-content-center align-items-center align-items-lg-start flex-lg-row">
         {user.role_id === 3 &&
         user.Binusian.NIM === null &&
         success === false ? (

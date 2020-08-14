@@ -18,7 +18,7 @@
   & > span {
     color: $primary-color;
     text-transform: capitalize;
-    font-size: 10pt;
+    @include font-size(10pt);
     margin-bottom: 2rem;
   }
   & > div > span {

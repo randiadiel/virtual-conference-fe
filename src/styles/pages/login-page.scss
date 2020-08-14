@@ -12,6 +12,9 @@
     height: 100vh;
     left: 1rem;
     top: 0;
+    @include media-breakpoint-down(sm){
+      display: none;
+    }
   }
   &-logo {
     height: 5rem;
