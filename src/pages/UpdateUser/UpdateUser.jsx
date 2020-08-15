@@ -32,7 +32,7 @@ class UpdateUser extends Component {
   };
 
   render() {
-    const { Name, email, phone, lineid } = this.state;
+    const { Name, email, phone, lineid, jurusan } = this.state;
     return (
       <div className="update-data">
         <form onSubmit={this.handleSubmitForm}>
