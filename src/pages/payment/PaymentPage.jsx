@@ -124,46 +124,48 @@ class PaymentPage extends Component {
           </ol>
 
           <h2 className="header">Upload Payment Receipt</h2>
-          <div className="row">
-            <div className="col-lg-6 col-xl-4">
-              {error !== "" ? (
-                <div className="alert alert-danger" role="alert">
-                  {error}
-                </div>
-              ) : (
-                <div></div>
-              )}
-              <FileUpload
-                onChange={this.handleFileChange}
-                reference={this.fileInput}
-                label={file.name}
-                id="payment_image"
-              ></FileUpload>
-            </div>
-          </div>
-          <div className="file-status">
-            <div>Size: {file.size} B</div>
-            <Button onClick={this.handleFileSubmit}>Upload</Button>
-
-            {payment.image === "" ? (
-              "Not yet Uploaded"
-            ) : (
-              <div>
-                <div>
-                  File :{" "}
-                  <a
-                    href={payment.image}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {payment.name}
-                  </a>
-                </div>
-                <div>
-                  Status : {payment.status === 0 ? "Unverified" : "Verified"}
-                </div>
+          <div className="w-100">
+            <div className="row">
+              <div className="col-lg-6 col-xl-4">
+                {error !== "" ? (
+                  <div className="alert alert-danger" role="alert">
+                    {error}
+                  </div>
+                ) : (
+                  <div></div>
+                )}
+                <FileUpload
+                  onChange={this.handleFileChange}
+                  reference={this.fileInput}
+                  label={file.name}
+                  id="payment_image"
+                ></FileUpload>
               </div>
-            )}
+            </div>
+            <div className="file-status">
+              <div>Size: {file.size} B</div>
+              <Button onClick={this.handleFileSubmit}>Upload</Button>
+
+              {payment.image === "" ? (
+                "Not yet Uploaded"
+              ) : (
+                <div>
+                  <div>
+                    File :{" "}
+                    <a
+                      href={payment.image}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {payment.name}
+                    </a>
+                  </div>
+                  <div>
+                    Status : {payment.status === 0 ? "Unverified" : "Verified"}
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
         </TitleCard>
       </div>

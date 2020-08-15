@@ -6,7 +6,7 @@ import Card from "../../components/Card/Index";
 import Button from "../../components/Button/Button";
 import Api from "../../api/Api";
 
-class InputNim extends Component {
+class UpdateUser extends Component {
   state = {
     NIM: "",
     jurusan: "",
@@ -32,37 +32,35 @@ class InputNim extends Component {
   };
 
   render() {
-    const { NIM, jurusan } = this.state;
+    const { Name, email, phone, lineid } = this.state;
     return (
-      <div className="input-nim">
-        <Card class=" d-flex flex-column justify-content-center align-items-center">
-          <form onSubmit={this.handleSubmitForm}>
-            <TextBox
-              placeholder="NIM"
-              name={"NIM"}
-              type={"text"}
-              value={NIM}
-              onChange={this.onChange}
-              icon={ModalNim}
-              alt={"NIM Image"}
-            ></TextBox>
-            <TextBox
-              placeholder="Major"
-              name={"jurusan"}
-              type={"text"}
-              value={jurusan}
-              onChange={this.onChange}
-              icon={ModalMajor}
-              alt={"Major Image"}
-            ></TextBox>
-            <input style={{ display: "none" }} type="submit" />
-            <div className="p-1"></div>
-            <Button onClick={this.handleSubmitForm}>Submit</Button>
-          </form>
-        </Card>
+      <div className="update-data">
+        <form onSubmit={this.handleSubmitForm}>
+          <TextBox
+            placeholder="Name"
+            name={"Name"}
+            type={"text"}
+            value={Name}
+            onChange={this.onChange}
+            icon={ModalNim}
+            alt={"NIM Image"}
+          ></TextBox>
+          <TextBox
+            placeholder="Major"
+            name={"jurusan"}
+            type={"text"}
+            value={jurusan}
+            onChange={this.onChange}
+            icon={ModalMajor}
+            alt={"Major Image"}
+          ></TextBox>
+          <input style={{ display: "none" }} type="submit" />
+          <div className="p-1"></div>
+          <Button onClick={this.handleSubmitForm}>Submit</Button>
+        </form>
       </div>
     );
   }
 }
 
-export default InputNim;
+export default UpdateUser;

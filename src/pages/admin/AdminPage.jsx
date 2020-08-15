@@ -19,6 +19,7 @@ class AdminPage extends Component {
   state = {
     user: "",
     success: false,
+    edit: {},
   };
   componentDidMount() {
     const user = AuthServices.getUserInfo().user;
@@ -33,13 +34,6 @@ class AdminPage extends Component {
     const { user, success } = this.state;
     return (
       <div className="dashboard-page">
-        {user.role_id === 3 &&
-        user.Binusian.NIM === null &&
-        success === false ? (
-          <InputNim onSuccess={this.onNimSuccess}></InputNim>
-        ) : (
-          <div></div>
-        )}
         <SideBarAdmin team="Randi"></SideBarAdmin>
         <Card class="dashboard-page-content">
           <Route path={"/admin/user"} component={UserPage}></Route>
