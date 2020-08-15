@@ -1,16 +1,8 @@
 import React, { Component } from "react";
 import { Route } from "react-router-dom";
 
-import SideBar from "../../components/SideBar/SideBar";
 import Card from "../../components/Card/Index";
-import LoginPage from "../login/LoginPage";
-import VerificationAwait from "../verification/VerificationAwait";
-import VerificationPayment from "../verification/VerificationPayment";
-import TitleCard from "../../components/TitleCard/TitleCard";
-import SchedulePage from "../schedule/SchedulePage";
-import PaymentPage from "../payment/PaymentPage";
 import AuthServices from "../../auth/AuthServices";
-import InputNim from "../inputnim/InputNim";
 import Api from "../../api/Api";
 import UserPage from "../user/UserPage";
 import SideBarAdmin from "../../components/SideBar/SideBarAdmin";

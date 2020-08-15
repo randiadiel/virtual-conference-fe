@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import ModalNim from "../../assets/LoginIcon/modal-nim.svg";
 import ModalMajor from "../../assets/LoginIcon/modal-major.svg";
 import TextBox from "../../components/TextBox/TextBox";
-import Card from "../../components/Card/Index";
 import Button from "../../components/Button/Button";
 import Api from "../../api/Api";
 

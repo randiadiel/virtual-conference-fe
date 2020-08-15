@@ -37,7 +37,7 @@ class LoginPage extends Component {
       password,
     };
     const promise = await AuthServices.login(credential);
-    const { message, status } = promise;
+    const { status } = promise;
     if (status === 200) {
       localStorage.setItem("userInfo", JSON.stringify(promise.data.original));
       if (
