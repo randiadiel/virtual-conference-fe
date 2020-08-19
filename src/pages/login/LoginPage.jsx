@@ -42,7 +42,7 @@ class LoginPage extends Component {
       localStorage.setItem("userInfo", JSON.stringify(promise.data.original));
       if (
         promise.data.original.user.role_id === 2 &&
-        promise.data.original.user.flazz
+        promise.data.original.user.Binusian.flazz
       ) {
         this.setState({ isLoggedIn: "verification" });
       } else if (promise.data.original.user.role_id === 1) {
