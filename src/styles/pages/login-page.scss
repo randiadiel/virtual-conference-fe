@@ -2,6 +2,11 @@
   color: white;
   background-color: $secondary-black;
   height: 100vh;
+  & form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
   &-background {
     position: absolute;
     width: 100vw;
@@ -35,5 +40,19 @@
   & > div > span {
     color: rgba($secondary-white, 0.6);
     margin: 1rem 0;
+  }
+}
+
+@include mobile {
+  .login-page {
+    &-dots {
+      display: none;
+    }
+    &-background {
+      display: none;
+    }
+    &-card {
+      padding: 2rem 3rem;
+    }
   }
 }

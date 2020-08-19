@@ -11,12 +11,21 @@ export default class UserPage extends Component {
     edit: {
       id: null,
     },
+    verify: null,
   };
   async componentDidMount() {
     const promise = await Api.handleGet("/auth/admin", true);
     const user = promise.data;
     this.setState({ user });
   }
+  cancelPayment = () => {
+    this.setState({ verify: null });
+  };
+  verifyPaymentClick = (e) => {
+    e.preventDefault();
+    const verify = e.target.id.trim();
+    this.setState({ verify });
+  };
   handleVerifyPayment = async (e) => {
     e.preventDefault();
     await Api.handlePost(
@@ -58,7 +67,6 @@ export default class UserPage extends Component {
                   key={e.id}
                   id={e.id}
                   name={e.name}
-                  payment={e.payment_id}
                   status={
                     e.payment_id === null
                       ? false
@@ -69,12 +77,16 @@ export default class UserPage extends Component {
                   binusian={
                     e.Binusian.flazz !== null && e.role_id !== 3 ? true : false
                   }
+                  flazz={e.Binusian.flazz}
                   role={e.role_id}
                   path={e.payment_id !== null ? e.Payment.image : e.payment_id}
                   payment_id={e.payment_id}
                   onVerifyPayment={this.handleVerifyPayment}
                   onVerifyBinusian={this.handleVerifyBinusian}
                   onEditClick={this.handleEditUser}
+                  verify={this.state.verify}
+                  onVerifyClick={this.verifyPaymentClick}
+                  onCancelPayment={this.cancelPayment}
                 ></UserCard>
               ) : (
                 <React.Fragment key={e.id}></React.Fragment>

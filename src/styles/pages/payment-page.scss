@@ -58,3 +58,11 @@
     color: $secondary-white;
   }
 }
+
+@include mobile {
+  .payment-page {
+    & .qr-image {
+      display: none;
+    }
+  }
+}

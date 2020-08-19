@@ -28,3 +28,11 @@
     }
   }
 }
+
+@include mobile {
+  .schedule-item {
+    &-number {
+      display: none;
+    }
+  }
+}

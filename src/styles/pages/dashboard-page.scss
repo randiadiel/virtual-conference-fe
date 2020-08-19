@@ -7,3 +7,31 @@
     margin: 2rem 2rem 2rem 0;
   }
 }
+
+@include mobile {
+  .dashboard-page {
+    flex-direction: column;
+    & .side-bar {
+      width: auto;
+      height: auto;
+      & .button-container {
+        margin-top: 1rem;
+        width: 100%;
+        display: flex;
+        justify-content: space-evenly;
+        & .side-bar-button {
+          margin: 0;
+          display: flex;
+          justify-content: flex-end;
+          & > svg {
+            height: 3rem;
+          }
+        }
+      }
+    }
+    &-content {
+      margin: 0;
+      min-height: 100vh;
+    }
+  }
+}

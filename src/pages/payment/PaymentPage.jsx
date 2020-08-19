@@ -74,7 +74,7 @@ class PaymentPage extends Component {
               <span>Amount</span>
             </div>
             <div className="ticket">
-              <h2>3 Day Pass</h2>
+              <h2 className="text-left">3 Day Pass</h2>
               <span>
                 <span>Rp</span>
                 <h2>{flazz === "" ? "50.000" : "35.000"}</h2>
@@ -100,7 +100,11 @@ class PaymentPage extends Component {
               <div>Nomor Rekening : 5271675071</div>
               <div>Bank : BCA</div>
               <div>Atas Nama : ANNISA VINIDYA LARASATI</div>
-              <img className="w-25" src={payment_qr} alt="QRCODE - BCA" />
+              <img
+                className="qr-image w-25"
+                src={payment_qr}
+                alt="QRCODE - BCA"
+              />
             </div>
             <li>
               Peserta mengunggah file bukti pembayaran dengan batas maksimum 5
