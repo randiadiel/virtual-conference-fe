@@ -15,7 +15,9 @@ class PaymentPage extends Component {
       name: "",
       status: 0,
     },
-    flazz: "",
+    binusian: {
+      flazz: "",
+    },
     id: 0,
   };
   constructor(props) {
@@ -31,7 +33,7 @@ class PaymentPage extends Component {
         name: user.Payment.name,
         status: user.Payment.status,
       };
-      this.setState({ payment, flazz: user.flazz, id: user.id });
+      this.setState({ payment, flazz: user.Binusian.flazz, id: user.id });
     }
   }
   handleFileChange = () => {
@@ -77,7 +79,7 @@ class PaymentPage extends Component {
               <h2 className="text-left">3 Day Pass</h2>
               <span>
                 <span>Rp</span>
-                <h2>{flazz === "" ? "50.000" : "35.000"}</h2>
+                <h2>{flazz} </h2>
               </span>
             </div>
             <hr className="white-lines" />
