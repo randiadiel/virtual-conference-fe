@@ -36,7 +36,7 @@ class DashboardPage extends Component {
         ) : (
           <div></div>
         )}
-        <SideBar team="Randi"></SideBar>
+        <SideBar team={user.name}></SideBar>
         <Card class="dashboard-page-content">
           <Route path={"/dashboard/payment"} component={PaymentPage}></Route>
           <Route path={"/dashboard/schedule"} component={SchedulePage}></Route>

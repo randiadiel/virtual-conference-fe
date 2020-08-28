@@ -25,13 +25,14 @@ class PaymentPage extends Component {
   componentDidMount() {
     const user = AuthServices.getUserInfo().user;
     if (user.payment_id === null) {
+      this.setState({ flazz: user.Binusian.flazz, id: user.id });
     } else {
       const payment = {
         image: user.Payment.image,
         name: user.Payment.name,
         status: user.Payment.status,
       };
-      this.setState({ payment, flazz: user.flazz, id: user.id });
+      this.setState({ payment, flazz: user.Binusian.flazz, id: user.id });
     }
   }
   handleFileChange = () => {
@@ -77,7 +78,7 @@ class PaymentPage extends Component {
               <h2 className="text-left">3 Day Pass</h2>
               <span>
                 <span>Rp</span>
-                <h2>{flazz === "" ? "50.000" : "35.000"}</h2>
+                <h2>{flazz === "" || flazz === null ? "50.000" : "35.000"}</h2>
               </span>
             </div>
             <hr className="white-lines" />
