@@ -27,7 +27,7 @@ class InputNim extends Component {
     form_data.append("NIM", NIM);
     form_data.append("jurusan", jurusan);
     const promise = await Api.handleFormDataPost("/auth/NIM", form_data, true);
-    const { message, status } = promise;
+    const { status } = promise;
     if (status === 200) this.props.onSuccess(NIM, jurusan);
   };
 

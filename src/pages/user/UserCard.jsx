@@ -1,7 +1,28 @@
 import React, { Component } from "react";
+import UserEdit from "./UserEdit";
 
-export default class UserCard extends Component {
+class UserCard extends Component {
+  state = {
+    onEdit: null,
+    editAlert: null,
+  };
+  onEditClick = (e) => {
+    e.preventDefault();
+    const { id } = e.target;
+    this.setState({ onEdit: id });
+  };
+  onCancelEdit = (e) => {
+    e.preventDefault();
+    this.setState({ onEdit: null });
+  };
+  doneEdit = () => {
+    this.setState({ onEdit: null, editAlert: "Edited Successfully" });
+    setTimeout(() => {
+      this.setState({ editAlert: null });
+    }, 5000);
+  };
   render() {
+    const { onEdit, editAlert } = this.state;
     const {
       id,
       name,
@@ -11,12 +32,13 @@ export default class UserCard extends Component {
       flazz,
       onVerifyPayment,
       onVerifyBinusian,
-      onEditClick,
       payment_id,
       role,
       verify,
       onCancelPayment,
       onVerifyClick,
+      user,
+      reloadUser,
     } = this.props;
     return (
       <div className="user-card">
@@ -96,10 +118,28 @@ export default class UserCard extends Component {
           </span>
         )}
         <hr />
-        <button id={id} className="btn btn-warning" onClick={onEditClick}>
-          Edit
+        {editAlert != null && (
+          <div class="alert alert-success" role="alert">
+            {editAlert}
+          </div>
+        )}
+        <button
+          id={id}
+          className="btn btn-warning"
+          onClick={onEdit == null ? this.onEditClick : this.onCancelEdit}
+        >
+          {onEdit != null ? "Cancel Edit" : "Edit"}
         </button>
+        {onEdit != null && (
+          <UserEdit
+            doneEdit={this.doneEdit}
+            reloadUser={reloadUser}
+            user={user}
+          ></UserEdit>
+        )}
       </div>
     );
   }
 }
+
+export default UserCard;

@@ -9,7 +9,7 @@ class SideBarAdmin extends Component {
     AuthServices.logout();
   };
   render() {
-    const { team, location } = this.props;
+    const { location } = this.props;
     let path = location.pathname;
     let top = path.split("/");
     return (

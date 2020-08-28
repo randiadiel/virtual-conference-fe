@@ -46,6 +46,7 @@ class Api {
     });
     return promise;
   };
+
   handlePost = async (endpoint, data, isPrivate) => {
     const promise = new Promise((resolve, reject) => {
       axios

@@ -18,6 +18,11 @@ export default class UserPage extends Component {
     const user = promise.data;
     this.setState({ user });
   }
+  reloadUser = async () => {
+    const promise = await Api.handleGet("/auth/admin", true);
+    const user = promise.data;
+    this.setState({ user });
+  };
   cancelPayment = () => {
     this.setState({ verify: null });
   };
@@ -64,6 +69,8 @@ export default class UserPage extends Component {
             user.map((e) =>
               e.role_id !== 1 ? (
                 <UserCard
+                  user={e}
+                  reloadUser={this.reloadUser}
                   key={e.id}
                   id={e.id}
                   name={e.name}

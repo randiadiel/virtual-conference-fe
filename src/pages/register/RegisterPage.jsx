@@ -13,6 +13,7 @@ import Card from "../../components/Card/Index";
 import Button from "../../components/Button/Button";
 import FileUpload from "../../components/FileUpload/FileUpload";
 import Api from "../../api/Api";
+import Loader from "../../components/Loader/Loader";
 
 class RegisterPage extends Component {
   state = {
@@ -26,6 +27,7 @@ class RegisterPage extends Component {
     flazz: "",
     success: false,
     confirmStatus: null,
+    loader: false,
     errors: {
       email: null,
       phone: null,
@@ -66,6 +68,7 @@ class RegisterPage extends Component {
 
   handleSubmitForm = async (e) => {
     e.preventDefault();
+    this.setState({ loader: true });
     const {
       name,
       phone,
@@ -98,7 +101,7 @@ class RegisterPage extends Component {
       if (status === 200) {
         this.setState({ success: true });
       } else if (errors != null) {
-        this.setState({ errors });
+        this.setState({ errors, loader: false });
       }
     }
   };
@@ -116,6 +119,7 @@ class RegisterPage extends Component {
       success,
       errors,
       confirmStatus,
+      loader,
     } = this.state;
     if (success === true) return <Redirect to="/login"></Redirect>;
     return (
@@ -246,7 +250,11 @@ class RegisterPage extends Component {
                 {errors.flazz}
               </h6>
             )}
-            <Button onClick={this.handleSubmitForm}>Continue</Button>
+            {loader === true ? (
+              <Loader></Loader>
+            ) : (
+              <Button onClick={this.handleSubmitForm}>Continue</Button>
+            )}
             <input style={{ display: "none" }} type="submit" />
           </form>
           <span className="text-center">

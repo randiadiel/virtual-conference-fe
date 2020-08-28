@@ -9,6 +9,7 @@ import TextBox from "../../components/TextBox/TextBox";
 import Card from "../../components/Card/Index";
 import Button from "../../components/Button/Button";
 import { Redirect, Link } from "react-router-dom";
+import Loader from "../../components/Loader/Loader";
 
 class LoginPage extends Component {
   state = {
@@ -16,6 +17,7 @@ class LoginPage extends Component {
     password: "",
     isLoggedIn: "false",
     error: [],
+    loader: false,
   };
 
   componentDidMount() {}
@@ -31,6 +33,7 @@ class LoginPage extends Component {
 
   handleSubmitForm = async (e) => {
     e.preventDefault();
+    this.setState({ loader: true });
     const { email, password } = this.state;
     const credential = {
       email,
@@ -54,14 +57,22 @@ class LoginPage extends Component {
       }
       this.setState({ isLoggedIn: "participant" });
     } else if (status === 422) {
-      this.setState({ error: promise.data.original, status: 422 });
+      this.setState({
+        error: promise.data.original,
+        status: 422,
+        loader: false,
+      });
     } else {
-      this.setState({ error: promise.data.original.error, status: 401 });
+      this.setState({
+        error: promise.data.original.error,
+        status: 401,
+        loader: false,
+      });
     }
   };
 
   render() {
-    const { email, password, isLoggedIn, error, status } = this.state;
+    const { email, password, isLoggedIn, error, status, loader } = this.state;
     if (isLoggedIn === "verification")
       return <Redirect to="/dashboard/verification"></Redirect>;
     if (isLoggedIn === "admin") return <Redirect to="/admin/user"></Redirect>;
@@ -118,7 +129,11 @@ class LoginPage extends Component {
             ></TextBox>
             <span className="align-self-end font-size-small p-1"></span>
             <input style={{ display: "none" }} type="submit" />
-            <Button onClick={this.handleSubmitForm}>Login</Button>
+            {loader === true ? (
+              <Loader></Loader>
+            ) : (
+              <Button onClick={this.handleSubmitForm}>Login</Button>
+            )}
           </form>
           <span className="text-center">
             <span className="color-primary">Not registered?</span>{" "}

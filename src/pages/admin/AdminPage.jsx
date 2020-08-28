@@ -23,7 +23,6 @@ class AdminPage extends Component {
     this.setState({ success: true });
   };
   render() {
-    const { user, success } = this.state;
     return (
       <div className="dashboard-page">
         <SideBarAdmin team="Randi"></SideBarAdmin>

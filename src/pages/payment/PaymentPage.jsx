@@ -5,6 +5,7 @@ import FileUpload from "../../components/FileUpload/FileUpload";
 import AuthServices from "../../auth/AuthServices";
 import Api from "../../api/Api";
 import payment_qr from "../../assets/Payment/payment_qr.jpg";
+import Loader from "../../components/Loader/Loader";
 
 class PaymentPage extends Component {
   state = {
@@ -17,6 +18,7 @@ class PaymentPage extends Component {
     },
     flazz: "",
     id: 0,
+    loader: false,
   };
   constructor(props) {
     super(props);
@@ -38,7 +40,9 @@ class PaymentPage extends Component {
   handleFileChange = () => {
     this.setState({ file: this.fileInput.current.files[0] });
   };
-  handleFileSubmit = async () => {
+  handleFileSubmit = async (e) => {
+    e.preventDefault();
+    this.setState({ loader: true });
     if (this.state.file.size === 0)
       this.setState({ error: "Please Upload a File" });
     else {
@@ -51,7 +55,11 @@ class PaymentPage extends Component {
       );
 
       if (promise.status === 201) {
-        this.setState({ file: { size: 0, name: "Choose File" }, error: "" });
+        this.setState({
+          file: { size: 0, name: "Choose File" },
+          error: "",
+          loader: false,
+        });
         Api.refresh();
         const payment = {
           image: promise.data[0].image,
@@ -59,12 +67,12 @@ class PaymentPage extends Component {
           status: promise.data[0].status,
         };
         console.log(payment);
-        this.setState({ payment: payment });
+        this.setState({ payment: payment, loader: false });
       }
     }
   };
   render() {
-    const { file, error, payment, flazz, id } = this.state;
+    const { file, error, payment, flazz, loader } = this.state;
     return (
       <div className="payment-page">
         <TitleCard title="Payment">
@@ -149,7 +157,11 @@ class PaymentPage extends Component {
             </div>
             <div className="file-status">
               <div>Size: {file.size} B</div>
-              <Button onClick={this.handleFileSubmit}>Upload</Button>
+              {loader === true ? (
+                <Loader></Loader>
+              ) : (
+                <Button onClick={this.handleFileSubmit}>Upload</Button>
+              )}
 
               {payment.image === "" ? (
                 "Not yet Uploaded"

@@ -26,12 +26,12 @@ class UpdateUser extends Component {
     form_data.append("NIM", NIM);
     form_data.append("jurusan", jurusan);
     const promise = await Api.handleFormDataPost("/auth/NIM", form_data, true);
-    const { message, status } = promise;
+    const { status } = promise;
     if (status === 200) this.props.onSuccess(NIM, jurusan);
   };
 
   render() {
-    const { Name, email, phone, lineid, jurusan } = this.state;
+    const { Name, jurusan } = this.state;
     return (
       <div className="update-data">
         <form onSubmit={this.handleSubmitForm}>
