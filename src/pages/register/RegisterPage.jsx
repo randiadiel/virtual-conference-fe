@@ -25,6 +25,15 @@ class RegisterPage extends Component {
     role: false,
     flazz: "",
     success: false,
+    confirmStatus: null,
+    errors: {
+      email: null,
+      phone: null,
+      lineid: null,
+      name: null,
+      password: null,
+      flazz: null,
+    },
   };
 
   constructor(props) {
@@ -36,6 +45,13 @@ class RegisterPage extends Component {
 
   onChange = (e) => {
     const target = e.target;
+    if (target.value !== this.state.password) {
+      if (target.name === "confirm" || target.name === "password") {
+        this.setState({ confirmStatus: "Password Didn't Match" });
+      }
+    } else {
+      this.setState({ confirmStatus: null });
+    }
     this.setState({ [target.name]: target.value });
   };
 
@@ -60,8 +76,8 @@ class RegisterPage extends Component {
       role,
       flazz,
     } = this.state;
-    if (!confirm === password) {
-      this.setState({ error: "Password Didn't Match" });
+    if (confirm !== password) {
+      this.setState({ confirmStatus: "Password Didn't Match" });
     } else {
       let form_data = new FormData();
       form_data.append("name", name);
@@ -78,10 +94,11 @@ class RegisterPage extends Component {
         form_data,
         false
       );
-      console.log(promise);
-      if (promise.status === 200) {
+      const { status, errors } = await promise;
+      if (status === 200) {
         this.setState({ success: true });
-        console.log("something");
+      } else if (errors != null) {
+        this.setState({ errors });
       }
     }
   };
@@ -97,6 +114,8 @@ class RegisterPage extends Component {
       role,
       flazz,
       success,
+      errors,
+      confirmStatus,
     } = this.state;
     if (success === true) return <Redirect to="/login"></Redirect>;
     return (
@@ -120,6 +139,11 @@ class RegisterPage extends Component {
               icon={NameImage}
               alt={"Name Image"}
             ></TextBox>
+            {errors.name != null && (
+              <h6 className="text-danger text-left w-100 px-3 m-0">
+                {errors.name}
+              </h6>
+            )}
             <TextBox
               placeholder="Whatsapp Number"
               name={"phone"}
@@ -129,6 +153,11 @@ class RegisterPage extends Component {
               icon={Whatsapp}
               alt={"Phone Image"}
             ></TextBox>
+            {errors.phone != null && (
+              <h6 className="text-danger text-left w-100 px-3 m-0">
+                {errors.phone}
+              </h6>
+            )}
             <TextBox
               placeholder="Line ID"
               name={"lineid"}
@@ -138,6 +167,11 @@ class RegisterPage extends Component {
               icon={Line}
               alt={"Line Image"}
             ></TextBox>
+            {errors.lineid != null && (
+              <h6 className="text-danger text-left w-100 px-3 m-0">
+                {errors.lineid}
+              </h6>
+            )}
             <TextBox
               placeholder="Email"
               name={"email"}
@@ -147,6 +181,11 @@ class RegisterPage extends Component {
               icon={EmailImage}
               alt={"Email Image"}
             ></TextBox>
+            {errors.email != null && (
+              <h6 className="text-danger text-left w-100 px-3 m-0">
+                {errors.email}
+              </h6>
+            )}
             <TextBox
               placeholder="Password"
               name={"password"}
@@ -156,6 +195,11 @@ class RegisterPage extends Component {
               icon={PasswordImage}
               alt={"Password Image"}
             ></TextBox>
+            {errors.password != null && (
+              <h6 className="text-danger text-left w-100 px-3 m-0">
+                {errors.password}
+              </h6>
+            )}
             <TextBox
               placeholder="Confirm Password"
               name={"confirm"}
@@ -165,6 +209,11 @@ class RegisterPage extends Component {
               icon={Confirm}
               alt={"Confirm Image"}
             ></TextBox>
+            {confirmStatus != null && (
+              <h6 className="text-danger text-left w-100 px-3 m-0">
+                {confirmStatus}
+              </h6>
+            )}
             <h6 className="mt-1">Are You Binusian ?</h6>
             <div>
               <input
@@ -190,6 +239,12 @@ class RegisterPage extends Component {
               </div>
             ) : (
               <div></div>
+            )}
+
+            {errors.flazz != null && (
+              <h6 className="text-danger text-left w-100 px-3 m-0">
+                {errors.flazz}
+              </h6>
             )}
             <Button onClick={this.handleSubmitForm}>Continue</Button>
             <input style={{ display: "none" }} type="submit" />

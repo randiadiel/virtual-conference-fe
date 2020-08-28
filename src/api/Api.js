@@ -42,7 +42,7 @@ class Api {
         .then((res) => {
           resolve(res.data);
         })
-        .catch((err) => reject(err));
+        .catch((err) => resolve(err.response.data));
     });
     return promise;
   };
