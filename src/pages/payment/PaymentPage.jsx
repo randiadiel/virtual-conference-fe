@@ -66,7 +66,6 @@ class PaymentPage extends Component {
           name: promise.data[0].name,
           status: promise.data[0].status,
         };
-        console.log(payment);
         this.setState({ payment: payment, loader: false });
       }
     }

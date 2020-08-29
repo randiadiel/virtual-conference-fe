@@ -1,10 +1,14 @@
 .user-card {
   color: $secondary-white;
-  background-color: $secondary-gray;
+  background-color: black;
   padding: 1rem;
   border-radius: 1rem;
   width: 18rem;
   margin: 1rem;
+  box-shadow: 0.4rem 0.4rem white;
+  & hr {
+    border-color: $secondary-white;
+  }
   & h2 {
     color: $primary-color;
     font-family: "Gilroy-Bold";

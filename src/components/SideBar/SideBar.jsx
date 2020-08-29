@@ -19,118 +19,125 @@ class SideBar extends Component {
           Hello, <span>{team}</span>
         </h4>
         <div className="button-container">
-          <Link
-            className={`side-bar-button ${
-              top[2] === "schedule"
-                ? "button-active"
-                : top[2] === "verification"
-                ? "is-disabled"
-                : ""
-            }`}
-            to="/dashboard/schedule"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="83.724"
-              height="93.027"
-              viewBox="0 0 83.724 93.027"
-            >
-              <path
-                id="Path_2983"
-                data-name="Path 2983"
-                d="M77.421,10.3H72.77V1h-9.3v9.3H26.257V1h-9.3v9.3H12.3a9.26,9.26,0,0,0-9.256,9.3L3,84.724a9.3,9.3,0,0,0,9.3,9.3H77.421a9.33,9.33,0,0,0,9.3-9.3V19.605A9.33,9.33,0,0,0,77.421,10.3Zm0,74.421H12.3V33.559H77.421ZM21.605,42.862H44.862V66.119H21.605Z"
-                transform="translate(-3 -1)"
-                fill="#f7f5ef"
-              />
-            </svg>
-            <span>Schedules</span>
-          </Link>
-          <Link
-            className={`side-bar-button ${
-              top[2] === "payment"
-                ? "button-active"
-                : top[2] === "verification"
-                ? "is-disabled"
-                : ""
-            }`}
-            to="/dashboard/payment"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="98"
-              height="85.748"
-              viewBox="0 0 98 85.748"
-            >
-              <g id="credit" transform="translate(0 -32.004)">
-                <g
-                  id="Group_1634"
-                  data-name="Group 1634"
-                  transform="translate(0 50.377)"
+          {top[2] === "schedule" ? (
+            <React.Fragment>
+              <Link
+                className={`side-bar-button ${
+                  top[2] === "schedule"
+                    ? "button-active"
+                    : top[2] === "verification"
+                    ? "is-disabled"
+                    : ""
+                }`}
+                to="/dashboard/schedule"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="83.724"
+                  height="93.027"
+                  viewBox="0 0 83.724 93.027"
                 >
-                  <g id="Group_1633" data-name="Group 1633">
-                    <path
-                      id="Path_3099"
-                      data-name="Path 3099"
-                      d="M94.937,164.746a3.064,3.064,0,0,0-3.062,3.063v21.438H6.125V152.5H39.812a3.062,3.062,0,1,0,0-6.125H6.125v-12.25H39.812a3.063,3.063,0,0,0,0-6.125H6.125A6.127,6.127,0,0,0,0,134.121v55.125a6.127,6.127,0,0,0,6.125,6.125h85.75A6.127,6.127,0,0,0,98,189.246V167.808A3.064,3.064,0,0,0,94.937,164.746Z"
-                      transform="translate(0 -127.996)"
-                      fill="#f4f4f4"
-                    />
-                  </g>
-                </g>
-                <g
-                  id="Group_1636"
-                  data-name="Group 1636"
-                  transform="translate(12.25 87.127)"
+                  <path
+                    id="Path_2983"
+                    data-name="Path 2983"
+                    d="M77.421,10.3H72.77V1h-9.3v9.3H26.257V1h-9.3v9.3H12.3a9.26,9.26,0,0,0-9.256,9.3L3,84.724a9.3,9.3,0,0,0,9.3,9.3H77.421a9.33,9.33,0,0,0,9.3-9.3V19.605A9.33,9.33,0,0,0,77.421,10.3Zm0,74.421H12.3V33.559H77.421ZM21.605,42.862H44.862V66.119H21.605Z"
+                    transform="translate(-3 -1)"
+                    fill="#f7f5ef"
+                  />
+                </svg>
+                <span>Schedules</span>
+              </Link>
+              <Link
+                className={`side-bar-button ${
+                  top[2] === "payment"
+                    ? "button-active"
+                    : top[2] === "verification"
+                    ? "is-disabled"
+                    : ""
+                }`}
+                to="/dashboard/payment"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="98"
+                  height="85.748"
+                  viewBox="0 0 98 85.748"
                 >
-                  <g id="Group_1635" data-name="Group 1635">
-                    <path
-                      id="Path_3100"
-                      data-name="Path 3100"
-                      d="M79.313,320H67.063a3.063,3.063,0,0,0,0,6.125h12.25a3.063,3.063,0,0,0,0-6.125Z"
-                      transform="translate(-64 -319.996)"
-                      fill="#f4f4f4"
-                    />
+                  <g id="credit" transform="translate(0 -32.004)">
+                    <g
+                      id="Group_1634"
+                      data-name="Group 1634"
+                      transform="translate(0 50.377)"
+                    >
+                      <g id="Group_1633" data-name="Group 1633">
+                        <path
+                          id="Path_3099"
+                          data-name="Path 3099"
+                          d="M94.937,164.746a3.064,3.064,0,0,0-3.062,3.063v21.438H6.125V152.5H39.812a3.062,3.062,0,1,0,0-6.125H6.125v-12.25H39.812a3.063,3.063,0,0,0,0-6.125H6.125A6.127,6.127,0,0,0,0,134.121v55.125a6.127,6.127,0,0,0,6.125,6.125h85.75A6.127,6.127,0,0,0,98,189.246V167.808A3.064,3.064,0,0,0,94.937,164.746Z"
+                          transform="translate(0 -127.996)"
+                          fill="#f4f4f4"
+                        />
+                      </g>
+                    </g>
+                    <g
+                      id="Group_1636"
+                      data-name="Group 1636"
+                      transform="translate(12.25 87.127)"
+                    >
+                      <g id="Group_1635" data-name="Group 1635">
+                        <path
+                          id="Path_3100"
+                          data-name="Path 3100"
+                          d="M79.313,320H67.063a3.063,3.063,0,0,0,0,6.125h12.25a3.063,3.063,0,0,0,0-6.125Z"
+                          transform="translate(-64 -319.996)"
+                          fill="#f4f4f4"
+                        />
+                      </g>
+                    </g>
+                    <g
+                      id="Group_1638"
+                      data-name="Group 1638"
+                      transform="translate(49 32.004)"
+                    >
+                      <g
+                        id="Group_1637"
+                        data-name="Group 1637"
+                        transform="translate(0 0)"
+                      >
+                        <path
+                          id="Path_3101"
+                          data-name="Path 3101"
+                          d="M303.144,41.435l-21.437-9.187a3.127,3.127,0,0,0-2.419,0L257.85,41.435A3.07,3.07,0,0,0,256,44.252V56.5c0,16.85,6.229,26.7,22.975,36.346a3.079,3.079,0,0,0,3.05,0C298.771,83.226,305,73.377,305,56.5V44.252A3.066,3.066,0,0,0,303.144,41.435ZM298.875,56.5c0,14.143-4.679,21.927-18.375,30.135-13.7-8.226-18.375-16.011-18.375-30.135V46.274L280.5,38.4l18.375,7.877Z"
+                          transform="translate(-256 -32.004)"
+                          fill="#f4f4f4"
+                        />
+                      </g>
+                    </g>
+                    <g
+                      id="Group_1640"
+                      data-name="Group 1640"
+                      transform="translate(61.252 50.381)"
+                    >
+                      <g id="Group_1639" data-name="Group 1639">
+                        <path
+                          id="Path_3102"
+                          data-name="Path 3102"
+                          d="M343.364,128.68a3.083,3.083,0,0,0-4.306.478L329.429,141.2l-3.81-5.7a3.061,3.061,0,1,0-5.1,3.393l6.125,9.187a3.087,3.087,0,0,0,2.419,1.366h.129a3.063,3.063,0,0,0,2.395-1.151l12.25-15.312A3.065,3.065,0,0,0,343.364,128.68Z"
+                          transform="translate(-320.011 -128.016)"
+                          fill="#f4f4f4"
+                        />
+                      </g>
+                    </g>
                   </g>
-                </g>
-                <g
-                  id="Group_1638"
-                  data-name="Group 1638"
-                  transform="translate(49 32.004)"
-                >
-                  <g
-                    id="Group_1637"
-                    data-name="Group 1637"
-                    transform="translate(0 0)"
-                  >
-                    <path
-                      id="Path_3101"
-                      data-name="Path 3101"
-                      d="M303.144,41.435l-21.437-9.187a3.127,3.127,0,0,0-2.419,0L257.85,41.435A3.07,3.07,0,0,0,256,44.252V56.5c0,16.85,6.229,26.7,22.975,36.346a3.079,3.079,0,0,0,3.05,0C298.771,83.226,305,73.377,305,56.5V44.252A3.066,3.066,0,0,0,303.144,41.435ZM298.875,56.5c0,14.143-4.679,21.927-18.375,30.135-13.7-8.226-18.375-16.011-18.375-30.135V46.274L280.5,38.4l18.375,7.877Z"
-                      transform="translate(-256 -32.004)"
-                      fill="#f4f4f4"
-                    />
-                  </g>
-                </g>
-                <g
-                  id="Group_1640"
-                  data-name="Group 1640"
-                  transform="translate(61.252 50.381)"
-                >
-                  <g id="Group_1639" data-name="Group 1639">
-                    <path
-                      id="Path_3102"
-                      data-name="Path 3102"
-                      d="M343.364,128.68a3.083,3.083,0,0,0-4.306.478L329.429,141.2l-3.81-5.7a3.061,3.061,0,1,0-5.1,3.393l6.125,9.187a3.087,3.087,0,0,0,2.419,1.366h.129a3.063,3.063,0,0,0,2.395-1.151l12.25-15.312A3.065,3.065,0,0,0,343.364,128.68Z"
-                      transform="translate(-320.011 -128.016)"
-                      fill="#f4f4f4"
-                    />
-                  </g>
-                </g>
-              </g>
-            </svg>
+                </svg>
 
-            <span>Payment</span>
-          </Link>
+                <span>Payment</span>
+              </Link>
+            </React.Fragment>
+          ) : (
+            top[2] === "verification" && <React.Fragment></React.Fragment>
+          )}
+
           <Link className="side-bar-button" onClick={this.handleLogout}>
             <svg
               id="XMLID_2_"
