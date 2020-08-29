@@ -19,7 +19,7 @@ class SideBar extends Component {
           Hello, <span>{team}</span>
         </h4>
         <div className="button-container">
-          {top[2] === "schedule" ? (
+          {top[2] !== "verification" ? (
             <React.Fragment>
               <Link
                 className={`side-bar-button ${
@@ -135,7 +135,7 @@ class SideBar extends Component {
               </Link>
             </React.Fragment>
           ) : (
-            top[2] === "verification" && <React.Fragment></React.Fragment>
+            <React.Fragment></React.Fragment>
           )}
 
           <Link className="side-bar-button" onClick={this.handleLogout}>

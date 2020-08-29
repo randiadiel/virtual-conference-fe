@@ -19,6 +19,7 @@ class PaymentPage extends Component {
     flazz: "",
     id: 0,
     loader: false,
+    alert: null,
   };
   constructor(props) {
     super(props);
@@ -29,6 +30,7 @@ class PaymentPage extends Component {
     if (user.payment_id === null) {
       this.setState({ flazz: user.Binusian.flazz, id: user.id });
     } else {
+      console.log(user);
       const payment = {
         image: user.Payment.image,
         name: user.Payment.name,
@@ -66,12 +68,16 @@ class PaymentPage extends Component {
           name: promise.data[0].name,
           status: promise.data[0].status,
         };
-        this.setState({ payment: payment, loader: false });
+        this.setState({
+          payment: payment,
+          loader: false,
+          alert: "Uploaded Successfully",
+        });
       }
     }
   };
   render() {
-    const { file, error, payment, flazz, loader } = this.state;
+    const { file, error, payment, flazz, loader, alert } = this.state;
     return (
       <div className="payment-page">
         <TitleCard title="Payment">
@@ -145,6 +151,11 @@ class PaymentPage extends Component {
                   </div>
                 ) : (
                   <div></div>
+                )}
+                {alert !== null && (
+                  <div className="alert alert-success" role="alert">
+                    {alert}
+                  </div>
                 )}
                 <FileUpload
                   onChange={this.handleFileChange}

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Route } from "react-router-dom";
+import { Route, Redirect } from "react-router-dom";
 
 import Card from "../../components/Card/Index";
 import AuthServices from "../../auth/AuthServices";
@@ -23,6 +23,9 @@ class AdminPage extends Component {
     this.setState({ success: true });
   };
   render() {
+    if (this.state.user.role_id !== 1) {
+      return <React.Fragment></React.Fragment>;
+    }
     return (
       <div className="dashboard-page">
         <SideBarAdmin team="Randi"></SideBarAdmin>
