@@ -129,7 +129,9 @@ class RegisterPage extends Component {
         }
       >
         <img className="login-page-dots" src={Dots} alt="Dots Background" />
-        <img className="login-page-logo mt-5" src={Logo} alt="Logo" />
+        <a href="https://virtualconference.bncc.net/" style={{ zIndex: 10 }}>
+          <img className="login-page-logo" src={Logo} alt="Logo" />
+        </a>
         <span>Acquire Technology Insight to Build Your Remarkable Career</span>
         <Card class={"login-page-card d-flex flex-column mb-5"}>
           <h2 className={"text-center mb-3"}>Registration</h2>

@@ -29,7 +29,6 @@ export default class UserEdit extends Component {
   handleFormSubmit = async (e) => {
     e.preventDefault();
     this.setState({ loader: true });
-    console.log(e.target.id);
     const id = e.target.id;
     const { name, phone, lineid, email, role_id, NIM, jurusan } = this.state;
     let form_data = new FormData();
@@ -38,7 +37,6 @@ export default class UserEdit extends Component {
     form_data.append("lineid", lineid);
     form_data.append("email", email);
     if (role_id === 3 && NIM !== null) {
-      console.log("hahahaha");
       form_data.append("NIM", NIM);
       form_data.append("jurusan", jurusan);
     }

@@ -5,6 +5,8 @@ import Api from "../../api/Api";
 import Loader from "../../components/Loader/Loader";
 import UpdateUser from "../UpdateUser/UpdateUser";
 
+import Sad from "../../assets/Vector/sad.svg";
+
 export default class UserPage extends Component {
   state = {
     user: [],
@@ -75,7 +77,32 @@ export default class UserPage extends Component {
           u.name
             .toString()
             .toLowerCase()
+            .match(new RegExp(searchQuery.toLowerCase(), "g")) ||
+          u.phone
+            .toString()
+            .toLowerCase()
+            .match(new RegExp(searchQuery.toLowerCase(), "g")) ||
+          u.email
+            .toString()
+            .toLowerCase()
+            .match(new RegExp(searchQuery.toLowerCase(), "g")) ||
+          u.lineid
+            .toString()
+            .toLowerCase()
             .match(new RegExp(searchQuery.toLowerCase(), "g"))
+        ) {
+          return u;
+        } else if (
+          (u.Binusian != null &&
+            u.Binusian.NIM != null &&
+            u.Binusian.NIM.toString()
+              .toLowerCase()
+              .match(new RegExp(searchQuery.toLowerCase(), "g"))) ||
+          (u.Binusian.jurusan != null &&
+            u.Binusian.jurusan
+              .toString()
+              .toLowerCase()
+              .match(new RegExp(searchQuery.toLowerCase(), "g")))
         ) {
           return u;
         }
@@ -117,7 +144,8 @@ export default class UserPage extends Component {
               value={searchQuery}
             />
             <small id="searchBarHelp" className="form-text text-light">
-              You can search participant's name here
+              You can search participant's name, email, phone, NIM, lineid, and
+              jurusan here
             </small>
           </div>
         </form>
@@ -160,7 +188,14 @@ export default class UserPage extends Component {
             <Loader></Loader>
           )}
           {filteredUser != null && filteredUser.length === 0 && (
-            <h4 className="text-light">No Match</h4>
+            <React.Fragment>
+              <div>
+                <img src={Sad} style={{ width: "200px" }}></img>
+                <h5 className="text-light text-center text-bold">
+                  <b>No Match</b>
+                </h5>
+              </div>
+            </React.Fragment>
           )}
         </TitleCard>
       </div>

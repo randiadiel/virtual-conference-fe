@@ -1,0 +1,12 @@
+.seminar-card {
+  width: 100%;
+  background-color: black;
+  border-radius: 1rem;
+  padding: 1.4rem;
+  margin: 0.5rem;
+  box-shadow: 0.3rem 0.3rem white;
+  &-title {
+    color: $primary-color;
+    font-family: "Gilroy-Bold";
+  }
+}

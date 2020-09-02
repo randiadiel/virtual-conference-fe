@@ -90,7 +90,9 @@ class LoginPage extends Component {
           src={LiquidBackground}
           alt="Liquid Background"
         />
-        <img className="login-page-logo" src={Logo} alt="Logo" />
+        <a href="https://virtualconference.bncc.net/" style={{ zIndex: 10 }}>
+          <img className="login-page-logo" src={Logo} alt="Logo" />
+        </a>
         <span className="login-page-description">
           Acquire Technology Insight to Build Your Remarkable Career
         </span>
