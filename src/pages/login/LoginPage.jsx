@@ -85,6 +85,7 @@ class LoginPage extends Component {
         }
       >
         <img className="login-page-dots" src={Dots} alt="Dots Background" />
+
         <img
           className="login-page-background"
           src={LiquidBackground}
