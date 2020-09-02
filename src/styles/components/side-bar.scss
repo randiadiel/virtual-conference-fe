@@ -2,7 +2,8 @@
   width: 20rem;
   color: $secondary-white;
   margin: 2rem;
-  height: calc(100vh - 4rem);
+  min-height: calc(100vh - 4rem);
+  height: fit-content;
   padding: 1rem 2rem;
   display: flex;
   flex-direction: column;

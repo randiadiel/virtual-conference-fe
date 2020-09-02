@@ -12,6 +12,7 @@ export default class UserPage extends Component {
       id: null,
     },
     verify: null,
+    searchQuery: "",
   };
   async componentDidMount() {
     const promise = await Api.handleGet("/auth/admin", true);
@@ -57,16 +58,72 @@ export default class UserPage extends Component {
     }
     this.setState({ edit: user[i] });
   };
+  handleSearchBarChange = (e) => {
+    e.preventDefault();
+    const searchQuery = e.target.value;
+    this.setState({ searchQuery });
+  };
   render() {
-    const { edit, user } = this.state;
+    const { edit, user, searchQuery } = this.state;
+    let filteredUser = null;
     if (edit.id !== null) {
       return <UpdateUser></UpdateUser>;
     }
+    if (user.length > 0) {
+      filteredUser = user.filter((u) => {
+        if (
+          u.name
+            .toString()
+            .toLowerCase()
+            .match(new RegExp(searchQuery.toLowerCase(), "g"))
+        ) {
+          return u;
+        }
+      });
+    }
     return (
       <div className="user-page">
-        <TitleCard title="User">
+        <span className="text-light mr-2 badge badge-light text-dark">
+          Total Participant: {user.length === 0 ? 0 : user.length - 1}
+        </span>
+        <span className="text-light mr-2 badge badge-light text-dark">
+          Total Verified Binusians:{" "}
+          {user.filter((e) => e.role_id === 3 && e).length}
+        </span>
+        <span className="text-light mr-2 badge badge-light text-dark">
+          Total Verified Payment:{" "}
+          {
+            user.filter(
+              (e) =>
+                e.payment_id == null &&
+                e.Payment != null &&
+                e.Payment.status === 1 &&
+                e
+            ).length
+          }
+        </span>
+        <form onSubmit={(e) => e.preventDefault()}>
+          <div class="form-group">
+            <label for="searchBar" className="text-light mb-0 mt-1">
+              Search
+            </label>
+            <input
+              type="text"
+              class="form-control"
+              id="searchBar"
+              aria-describedby="searchBarHelp"
+              onChange={this.handleSearchBarChange}
+              placeholder="ex. Edbert Junus"
+              value={searchQuery}
+            />
+            <small id="searchBarHelp" className="form-text text-light">
+              You can search participant's name here
+            </small>
+          </div>
+        </form>
+        <TitleCard title="Participants List">
           {user.length > 0 ? (
-            user.map((e) =>
+            filteredUser.map((e) =>
               e.role_id !== 1 ? (
                 <UserCard
                   user={e}
@@ -101,6 +158,9 @@ export default class UserPage extends Component {
             )
           ) : (
             <Loader></Loader>
+          )}
+          {filteredUser != null && filteredUser.length === 0 && (
+            <h4 className="text-light">No Match</h4>
           )}
         </TitleCard>
       </div>

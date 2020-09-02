@@ -1,11 +1,12 @@
 import React, { Component } from "react";
-import { Route, Redirect } from "react-router-dom";
+import { Route } from "react-router-dom";
 
 import Card from "../../components/Card/Index";
 import AuthServices from "../../auth/AuthServices";
 import Api from "../../api/Api";
 import UserPage from "../user/UserPage";
 import SideBarAdmin from "../../components/SideBar/SideBarAdmin";
+import SeminarsPage from "../seminars/SeminarsPage";
 
 class AdminPage extends Component {
   state = {
@@ -31,6 +32,7 @@ class AdminPage extends Component {
         <SideBarAdmin team="Randi"></SideBarAdmin>
         <Card class="dashboard-page-content">
           <Route path={"/admin/user"} component={UserPage}></Route>
+          <Route path={"/admin/seminars"} component={SeminarsPage}></Route>
         </Card>
       </div>
     );
