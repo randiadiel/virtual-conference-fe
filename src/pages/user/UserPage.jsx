@@ -15,6 +15,10 @@ export default class UserPage extends Component {
     },
     verify: null,
     searchQuery: "",
+    bFilter: false,
+    pFilter: false,
+    vFilter: false,
+    vbFilter: false,
   };
   async componentDidMount() {
     const promise = await Api.handleGet("/auth/admin", true);
@@ -65,8 +69,40 @@ export default class UserPage extends Component {
     const searchQuery = e.target.value;
     this.setState({ searchQuery });
   };
+  binusianFilterClick = () => {
+    if (this.state.vbFilter === false) {
+      const { bFilter } = this.state;
+      this.setState({ bFilter: !bFilter });
+    }
+  };
+  paymentFilterClick = () => {
+    if (this.state.vFilter === false) {
+      const { pFilter } = this.state;
+      this.setState({ pFilter: !pFilter });
+    }
+  };
+  verifiedFilterClick = () => {
+    if (this.state.pFilter === false) {
+      const { vFilter } = this.state;
+      this.setState({ vFilter: !vFilter });
+    }
+  };
+  vBinusianFilterClick = () => {
+    if (this.state.bFilter === false) {
+      const { vbFilter } = this.state;
+      this.setState({ vbFilter: !vbFilter });
+    }
+  };
   render() {
-    const { edit, user, searchQuery } = this.state;
+    const {
+      edit,
+      user,
+      searchQuery,
+      bFilter,
+      pFilter,
+      vFilter,
+      vbFilter,
+    } = this.state;
     let filteredUser = null;
     if (edit.id !== null) {
       return <UpdateUser></UpdateUser>;
@@ -107,6 +143,24 @@ export default class UserPage extends Component {
           return u;
         }
       });
+      if (bFilter === true) {
+        filteredUser = filteredUser.filter(
+          (u) => u.role_id === 2 && u.Binusian.flazz != null && u
+        );
+      }
+      if (pFilter === true) {
+        filteredUser = filteredUser.filter(
+          (u) => u.Payment != null && u.Payment.status === 0 && u
+        );
+      }
+      if (vFilter === true) {
+        filteredUser = filteredUser.filter(
+          (u) => u.Payment != null && u.Payment.status === 1 && u
+        );
+      }
+      if (vbFilter === true) {
+        filteredUser = filteredUser.filter((u) => u.role_id === 3 && u);
+      }
     }
     return (
       <div className="user-page">
@@ -149,6 +203,43 @@ export default class UserPage extends Component {
             </small>
           </div>
         </form>
+        <button
+          className={`btn btn-${
+            bFilter === true ? "success" : "secondary"
+          } mr-2`}
+          onClick={this.binusianFilterClick}
+          disabled={vbFilter === true && true}
+        >
+          Haven't Verified Binusian
+        </button>
+        <button
+          className={`btn btn-${
+            pFilter === true ? "success" : "secondary"
+          } mr-2`}
+          onClick={this.paymentFilterClick}
+          disabled={(vFilter === true || bFilter === true) && true}
+        >
+          Haven't Verified Payment
+        </button>
+        <button
+          className={`btn btn-${
+            vbFilter === true ? "success" : "secondary"
+          } mr-2`}
+          onClick={this.vBinusianFilterClick}
+          disabled={bFilter === true && true}
+        >
+          Verified Binusian
+        </button>
+        <button
+          className={`btn btn-${
+            vFilter === true ? "success" : "secondary"
+          } mr-2`}
+          onClick={this.verifiedFilterClick}
+          disabled={(pFilter === true || bFilter === true) && true}
+        >
+          Verified Payment
+        </button>
+
         <TitleCard title="Participants List">
           {user.length > 0 ? (
             filteredUser.map((e) =>
