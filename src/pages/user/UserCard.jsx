@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import ReactTooltip from "react-tooltip";
 import UserEdit from "./UserEdit";
 
 class UserCard extends Component {
@@ -21,8 +22,11 @@ class UserCard extends Component {
       this.setState({ editAlert: null });
     }, 5000);
   };
+  onVerifyBinusianPrompt = (e) => {
+    this.setState({ verifyB: e.target.id });
+  };
   render() {
-    const { onEdit, editAlert } = this.state;
+    const { onEdit, editAlert, verifyB } = this.state;
     const {
       id,
       name,
@@ -42,6 +46,7 @@ class UserCard extends Component {
     } = this.props;
     return (
       <div className="user-card">
+        <ReactTooltip></ReactTooltip>
         <h2>{name}</h2>
         <p>Payment Status : {status === false ? "Unverified" : "Verified"}</p>
         {payment_id !== null ? (
@@ -52,6 +57,8 @@ class UserCard extends Component {
                 href={path}
                 target="_blank"
                 rel="noopener noreferrer"
+                data-tip={`<img src="${path}" style="width: 300px"/>`}
+                data-html={true}
               >
                 View Payment
               </a>
@@ -59,7 +66,7 @@ class UserCard extends Component {
             {status === false ? (
               verify === id.toString() ? (
                 <div>
-                  <h5>Udah yakin mo diverif?</h5>
+                  <h6>Udah yakin mo diverif?</h6>
                   <button
                     id={id}
                     onClick={onVerifyPayment}
@@ -92,26 +99,62 @@ class UserCard extends Component {
           <React.Fragment>
             <div>
               <a
-                className="badge badge-primary mb-3"
+                className="badge badge-primary mb-3 mr-3"
                 href={flazz}
                 target="_blank"
                 rel="noopener noreferrer"
+                data-tip={`<img src="${flazz}" style="width: 300px"/>`}
+                data-html={true}
               >
                 View Flazz
               </a>
             </div>
-            <button
-              className="btn btn-warning"
-              onClick={onVerifyBinusian}
-              id={id}
-            >
-              Verify B
-            </button>
+            {verifyB === id.toString() ? (
+              <div>
+                <h6>Udah yakin mo diverif?</h6>
+                <button
+                  id={id}
+                  onClick={onVerifyBinusian}
+                  className="btn btn-primary mr-2"
+                >
+                  Verify
+                </button>
+                <button
+                  onClick={() => this.setState({ verifyB: false })}
+                  className="btn btn-danger"
+                >
+                  Cancel
+                </button>
+              </div>
+            ) : (
+              <button
+                className="btn btn-warning"
+                onClick={this.onVerifyBinusianPrompt}
+                id={id}
+              >
+                Verify Binusian
+              </button>
+            )}
           </React.Fragment>
         ) : (
           <span>
             {role === 3 ? (
-              <p className="badge badge-success">Verified as Binusian</p>
+              <React.Fragment>
+                <div>
+                  <a
+                    className="badge badge-primary mb-3"
+                    href={flazz}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    data-tip={`<img src="${flazz}" style="width: 300px"/>`}
+                    data-html={true}
+                  >
+                    View Flazz
+                  </a>
+                </div>
+
+                <p className="badge badge-success">Verified as Binusian</p>
+              </React.Fragment>
             ) : (
               <p className="badge badge-danger">Not A Binusian</p>
             )}

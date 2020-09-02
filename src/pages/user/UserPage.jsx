@@ -130,13 +130,13 @@ export default class UserPage extends Component {
           }
         </span>
         <form onSubmit={(e) => e.preventDefault()}>
-          <div class="form-group">
-            <label for="searchBar" className="text-light mb-0 mt-1">
+          <div className="form-group">
+            <label htmlFor="searchBar" className="text-light mb-0 mt-1">
               Search
             </label>
             <input
               type="text"
-              class="form-control"
+              className="form-control"
               id="searchBar"
               aria-describedby="searchBarHelp"
               onChange={this.handleSearchBarChange}

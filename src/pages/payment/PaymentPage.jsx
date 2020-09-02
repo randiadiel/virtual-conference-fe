@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import ReactTooltip from "react-tooltip";
 import TitleCard from "../../components/TitleCard/TitleCard";
 import Button from "../../components/Button/Button";
 import FileUpload from "../../components/FileUpload/FileUpload";
@@ -20,6 +21,7 @@ class PaymentPage extends Component {
     id: 0,
     loader: false,
     alert: null,
+    copy: null,
   };
   constructor(props) {
     super(props);
@@ -77,7 +79,7 @@ class PaymentPage extends Component {
     }
   };
   render() {
-    const { file, error, payment, flazz, loader, alert } = this.state;
+    const { file, error, payment, flazz, loader, alert, copy } = this.state;
     return (
       <div className="payment-page">
         <TitleCard title="Payment">
@@ -111,7 +113,27 @@ class PaymentPage extends Component {
               rekening berikut:
             </li>
             <div>
-              <div>Nomor Rekening : 5271675071</div>
+              <div>
+                Nomor Rekening :{" "}
+                <span
+                  className="user-select-all"
+                  onClick={() => {
+                    document.execCommand("copy");
+                    this.setState({ copy: "Copied!" });
+                    setTimeout(() => {
+                      this.setState({ copy: null });
+                    }, 2000);
+                  }}
+                  data-tip="Click to Copy"
+                >
+                  {copy !== null ? (
+                    <span className="badge badge-success">{copy}</span>
+                  ) : (
+                    "5271675071"
+                  )}
+                </span>
+                <ReactTooltip></ReactTooltip>
+              </div>
               <div>Bank : BCA</div>
               <div>Atas Nama : ANNISA VINIDYA LARASATI</div>
               <img
