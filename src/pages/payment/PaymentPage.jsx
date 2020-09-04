@@ -7,6 +7,7 @@ import AuthServices from "../../auth/AuthServices";
 import Api from "../../api/Api";
 import payment_qr from "../../assets/Payment/payment_qr.jpg";
 import Loader from "../../components/Loader/Loader";
+import PaymentVerified from "./PaymentVerified";
 
 class PaymentPage extends Component {
   state = {
@@ -32,13 +33,17 @@ class PaymentPage extends Component {
     if (user.payment_id === null) {
       this.setState({ flazz: user.Binusian.flazz, id: user.id });
     } else {
-      console.log(user);
       const payment = {
         image: user.Payment.image,
         name: user.Payment.name,
         status: user.Payment.status,
       };
-      this.setState({ payment, flazz: user.Binusian.flazz, id: user.id });
+      this.setState({
+        payment,
+        flazz: user.Binusian.flazz,
+        id: user.id,
+        name: user.name,
+      });
     }
   }
   handleFileChange = () => {
@@ -79,7 +84,19 @@ class PaymentPage extends Component {
     }
   };
   render() {
-    const { file, error, payment, flazz, loader, alert, copy } = this.state;
+    const {
+      file,
+      error,
+      payment,
+      flazz,
+      loader,
+      alert,
+      copy,
+      name,
+    } = this.state;
+    if (payment != null && payment.status === 1) {
+      return <PaymentVerified payment={payment} name={name}></PaymentVerified>;
+    }
     return (
       <div className="payment-page">
         <TitleCard title="Payment">
@@ -200,17 +217,19 @@ class PaymentPage extends Component {
               ) : (
                 <div>
                   <div>
-                    File :{" "}
+                    Last Uploaded File :{" "}
                     <a
-                      href={payment.image}
+                      href={`https://virtualconference-app.s3-ap-southeast-1.amazonaws.com/${payment.image}`}
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      {payment.name}
+                      {payment.image.split("/")[1]}
                     </a>
                   </div>
                   <div>
-                    Status : {payment.status === 0 ? "Unverified" : "Verified"}
+                    {payment.status === 0
+                      ? "Your Payment is Being Processed"
+                      : "Verified"}
                   </div>
                 </div>
               )}

@@ -142,6 +142,7 @@ export default class UserPage extends Component {
         ) {
           return u;
         }
+        return null;
       });
       if (bFilter === true) {
         filteredUser = filteredUser.filter(
@@ -206,16 +207,16 @@ export default class UserPage extends Component {
         <button
           className={`btn btn-${
             bFilter === true ? "success" : "secondary"
-          } mr-2`}
+          } mr-2 mb-2`}
           onClick={this.binusianFilterClick}
-          disabled={vbFilter === true && true}
+          disabled={(vbFilter === true || pFilter === true) && true}
         >
           Haven't Verified Binusian
         </button>
         <button
           className={`btn btn-${
             pFilter === true ? "success" : "secondary"
-          } mr-2`}
+          } mr-2 mb-2`}
           onClick={this.paymentFilterClick}
           disabled={(vFilter === true || bFilter === true) && true}
         >
@@ -224,7 +225,7 @@ export default class UserPage extends Component {
         <button
           className={`btn btn-${
             vbFilter === true ? "success" : "secondary"
-          } mr-2`}
+          } mr-2 mb-2`}
           onClick={this.vBinusianFilterClick}
           disabled={bFilter === true && true}
         >
@@ -233,7 +234,7 @@ export default class UserPage extends Component {
         <button
           className={`btn btn-${
             vFilter === true ? "success" : "secondary"
-          } mr-2`}
+          } mr-2 mb-2`}
           onClick={this.verifiedFilterClick}
           disabled={(pFilter === true || bFilter === true) && true}
         >
@@ -281,7 +282,7 @@ export default class UserPage extends Component {
           {filteredUser != null && filteredUser.length === 0 && (
             <React.Fragment>
               <div>
-                <img src={Sad} style={{ width: "200px" }}></img>
+                <img alt="Sad" src={Sad} style={{ width: "200px" }}></img>
                 <h5 className="text-light text-center text-bold">
                   <b>No Match</b>
                 </h5>
