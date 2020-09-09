@@ -21,13 +21,15 @@ class SeminarsPage extends Component {
     return (
       <div className="seminars-page">
         <TitleCard title="Seminars">
-          {seminars != null ? (
-            seminars.map((e) => (
-              <SeminarCard doneEdit={this.doneEdit} seminar={e}></SeminarCard>
-            ))
-          ) : (
-            <Loader></Loader>
-          )}
+          <React.Fragment>
+            {seminars != null ? (
+              seminars.map((e) => (
+                <SeminarCard doneEdit={this.doneEdit} seminar={e}></SeminarCard>
+              ))
+            ) : (
+              <Loader></Loader>
+            )}
+          </React.Fragment>
         </TitleCard>
       </div>
     );

@@ -10,23 +10,31 @@ class ScheduleItem extends Component {
         <ReactTooltip></ReactTooltip>
         <Card class="schedule-item-number">{number}.</Card>
         <Card class="schedule-item-content">
-          <div>
-            <span className="title">Topic</span>
-            <span className="title">Time</span>
-            <span className="title">Link</span>
-          </div>
-          <div>
-            <span className="description">{topic}</span>
-            <span className="description">{time}</span>
-            <a
-              href={link}
-              className="description"
-              data-tip={link}
-              data-type="light"
-            >
-              Click Here
-            </a>
-          </div>
+          <table>
+            <tbody>
+              <tr>
+                <td className="title pr-2">Topic</td>
+                <td className="description">{topic}</td>
+              </tr>
+              <tr>
+                <td className="title pr-2">Time</td>
+                <td className="description">{time}</td>
+              </tr>
+              <tr>
+                <td className="title pr-2">Link</td>
+                <td>
+                  <a
+                    href={link}
+                    className="description"
+                    data-tip={link}
+                    data-type="light"
+                  >
+                    Click Here
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </Card>
       </div>
     );

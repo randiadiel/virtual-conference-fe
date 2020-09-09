@@ -6,6 +6,8 @@ import AuthServices from "../../auth/AuthServices";
 import VerificationPayment from "../verification/VerificationPayment";
 import Loader from "../../components/Loader/Loader";
 
+import PdfGuidebook from "../../assets/Booklet_Virtual_Conference.pdf";
+
 class SchedulePage extends Component {
   state = {
     schedules: [],
