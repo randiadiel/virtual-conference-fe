@@ -26,6 +26,13 @@ class SchedulePage extends Component {
     }
     return (
       <TitleCard title="Seminar Schedules">
+        <p className="text-light w-100">
+          Before joining any seminars, please read our{" "}
+          <a href={PdfGuidebook} target="_blank">
+            participant guidelines
+          </a>
+          .
+        </p>
         {schedules.length > 0 ? (
           schedules.map((e) => {
             number += 1;
