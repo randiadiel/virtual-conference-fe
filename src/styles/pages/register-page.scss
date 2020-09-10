@@ -31,3 +31,37 @@
     margin: 1rem 0;
   }
 }
+
+.register-end {
+  min-height: 100vh;
+  & .card-custom {
+    max-width: 50%;
+    z-index: 1050;
+  }
+
+  &-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &-hackathon {
+      height: 7rem;
+    }
+    &-technoscape {
+      height: 3rem;
+    }
+  }
+  & a {
+    color: $primary-color;
+  }
+}
+
+@include mobile {
+  .register-end {
+    & .card-custom {
+      max-width: 100%;
+    }
+    &-logo {
+      flex-direction: column;
+    }
+  }
+}

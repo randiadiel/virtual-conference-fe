@@ -28,7 +28,7 @@ class SchedulePage extends Component {
       <TitleCard title="Seminar Schedules">
         <p className="text-light w-100">
           Before joining any seminars, please read our{" "}
-          <a href={PdfGuidebook} target="_blank">
+          <a href={PdfGuidebook} target="_blank" rel="noopener noreferrer">
             participant guidelines
           </a>
           .
