@@ -4,6 +4,7 @@ import UserCard from "./UserCard";
 import Api from "../../api/Api";
 import Loader from "../../components/Loader/Loader";
 import UpdateUser from "../UpdateUser/UpdateUser";
+import css from "../../styles/index.scss";
 
 import Sad from "../../assets/Vector/sad.svg";
 
@@ -164,15 +165,21 @@ export default class UserPage extends Component {
       }
     }
     return (
-      <div className="user-page">
-        <span className="text-light mr-2 badge badge-light text-dark">
+      <div className={`${css["user-page"]}`}>
+        <span
+          className={`${css["text-light"]} ${css["mr-2"]} ${css["badge"]} ${css["badge-light"]} ${css["text-dark"]}`}
+        >
           Total Participant: {user.length === 0 ? 0 : user.length - 1}
         </span>
-        <span className="text-light mr-2 badge badge-light text-dark">
+        <span
+          className={`${css["text-light"]} ${css["mr-2"]} ${css["badge"]} ${css["badge-light"]} ${css["text-dark"]}`}
+        >
           Total Verified Binusians:{" "}
           {user.filter((e) => e.role_id === 3 && e).length}
         </span>
-        <span className="text-light mr-2 badge badge-light text-dark">
+        <span
+          className={`${css["text-light"]} ${css["mr-2"]} ${css["badge"]} ${css["badge-light"]} ${css["text-dark"]}`}
+        >
           Total Verified Payment:{" "}
           {
             user.filter(
@@ -185,56 +192,62 @@ export default class UserPage extends Component {
           }
         </span>
         <form onSubmit={(e) => e.preventDefault()}>
-          <div className="form-group">
-            <label htmlFor="searchBar" className="text-light mb-0 mt-1">
+          <div className={`${css["form-group"]}`}>
+            <label
+              htmlFor="searchBar"
+              className={`${css["text-light"]} ${css["mb-0"]} ${css["mt-1"]}`}
+            >
               Search
             </label>
             <input
               type="text"
-              className="form-control"
+              className={`${css["form-control"]}`}
               id="searchBar"
               aria-describedby="searchBarHelp"
               onChange={this.handleSearchBarChange}
               placeholder="ex. Edbert Junus"
               value={searchQuery}
             />
-            <small id="searchBarHelp" className="form-text text-light">
+            <small
+              id="searchBarHelp"
+              className={`${css["form-text"]} ${css["text-light"]}`}
+            >
               You can search participant's name, email, phone, NIM, lineid, and
               jurusan here
             </small>
           </div>
         </form>
         <button
-          className={`btn btn-${
-            bFilter === true ? "success" : "secondary"
-          } mr-2 mb-2`}
+          className={`${css["btn"]} ${
+            css[`btn-${bFilter === true ? "success" : "secondary"}`]
+          } ${css["mr-2"]} ${css["mb-2"]}`}
           onClick={this.binusianFilterClick}
           disabled={(vbFilter === true || pFilter === true) && true}
         >
           Haven't Verified Binusian
         </button>
         <button
-          className={`btn btn-${
-            pFilter === true ? "success" : "secondary"
-          } mr-2 mb-2`}
+          className={`${css["btn"]} ${
+            css[`btn-${pFilter === true ? "success" : "secondary"}`]
+          } ${css["mr-2"]} ${css["mb-2"]}`}
           onClick={this.paymentFilterClick}
           disabled={(vFilter === true || bFilter === true) && true}
         >
           Haven't Verified Payment
         </button>
         <button
-          className={`btn btn-${
-            vbFilter === true ? "success" : "secondary"
-          } mr-2 mb-2`}
+          className={`${css["btn"]} ${
+            css[`btn-${vbFilter === true ? "success" : "secondary"}`]
+          } ${css["mr-2"]} ${css["mb-2"]}`}
           onClick={this.vBinusianFilterClick}
           disabled={bFilter === true && true}
         >
           Verified Binusian
         </button>
         <button
-          className={`btn btn-${
-            vFilter === true ? "success" : "secondary"
-          } mr-2 mb-2`}
+          className={`${css["btn"]} ${
+            css[`btn-${vFilter === true ? "success" : "secondary"}`]
+          } ${css["mr-2"]} ${css["mb-2"]}`}
           onClick={this.verifiedFilterClick}
           disabled={(pFilter === true || bFilter === true) && true}
         >
@@ -283,7 +296,9 @@ export default class UserPage extends Component {
             <React.Fragment>
               <div>
                 <img alt="Sad" src={Sad} style={{ width: "200px" }}></img>
-                <h5 className="text-light text-center text-bold">
+                <h5
+                  className={`${css["text-light"]} ${css["text-center"]} ${css["text-bold"]}`}
+                >
                   <b>No Match</b>
                 </h5>
               </div>

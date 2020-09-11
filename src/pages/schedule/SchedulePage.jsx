@@ -8,6 +8,7 @@ import Loader from "../../components/Loader/Loader";
 
 import PdfGuidebook from "../../assets/Booklet_Virtual_Conference.pdf";
 import { Redirect } from "react-router-dom";
+import css from "../../styles/index.scss";
 
 class SchedulePage extends Component {
   state = {
@@ -41,7 +42,7 @@ class SchedulePage extends Component {
     }
     return (
       <TitleCard title="Seminar Schedules">
-        <p className="text-light w-100">
+        <p className={`${css["text-light"]} ${css["w-100"]}`}>
           Before joining any seminars, please read our{" "}
           <a href={PdfGuidebook} target="_blank" rel="noopener noreferrer">
             participant guidelines

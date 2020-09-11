@@ -4,6 +4,7 @@ import ModalMajor from "../../assets/LoginIcon/modal-major.svg";
 import TextBox from "../../components/TextBox/TextBox";
 import Button from "../../components/Button/Button";
 import Api from "../../api/Api";
+import css from "../../styles/index.scss";
 
 class UpdateUser extends Component {
   state = {
@@ -33,7 +34,7 @@ class UpdateUser extends Component {
   render() {
     const { Name, jurusan } = this.state;
     return (
-      <div className="update-data">
+      <div className={`${css["update-data"]}`}>
         <form onSubmit={this.handleSubmitForm}>
           <TextBox
             placeholder="Name"
@@ -54,7 +55,7 @@ class UpdateUser extends Component {
             alt={"Major Image"}
           ></TextBox>
           <input style={{ display: "none" }} type="submit" />
-          <div className="p-1"></div>
+          <div className={`${css["p-1"]}`}></div>
           <Button onClick={this.handleSubmitForm}>Submit</Button>
         </form>
       </div>

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import css from "../../styles/index.scss";
 
 class TextBox extends Component {
   render() {
@@ -13,7 +14,7 @@ class TextBox extends Component {
       autocomplete,
     } = this.props;
     return (
-      <div className="text-box">
+      <div className={`${css["text-box"]}`}>
         <img src={icon} alt={alt} />
         <input
           type={type}

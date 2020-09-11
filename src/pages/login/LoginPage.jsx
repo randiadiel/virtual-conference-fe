@@ -11,6 +11,7 @@ import Button from "../../components/Button/Button";
 import { Redirect, Link } from "react-router-dom";
 import Loader from "../../components/Loader/Loader";
 import Axios from "axios";
+import css from "../../styles/index.scss";
 
 class LoginPage extends Component {
   state = {
@@ -90,31 +91,38 @@ class LoginPage extends Component {
       return <Redirect to="/dashboard/schedule"></Redirect>;
     return (
       <div
-        className={
-          "login-page d-flex justify-content-center align-items-center flex-column container-fluid"
-        }
+        className={`${css["login-page"]} ${css["d-flex"]} ${css["justify-content-center"]} ${css["align-items-center"]} ${css["container-fluid"]} ${css["flex-column"]}`}
       >
-        <img className="login-page-dots" src={Dots} alt="Dots Background" />
+        <img
+          className={`${css["login-page-dots"]}`}
+          src={Dots}
+          alt="Dots Background"
+        />
 
         <img
-          className="login-page-background"
+          className={`${css["login-page-background"]}`}
           src={LiquidBackground}
           alt="Liquid Background"
         />
         <a href="https://virtualconference.bncc.net/" style={{ zIndex: 10 }}>
-          <img className="login-page-logo" src={Logo} alt="Logo" />
+          <img className={`${css["login-page-logo"]}`} src={Logo} alt="Logo" />
         </a>
-        <span className="login-page-description">
+        <span className={`${css["login-page-description"]}`}>
           Acquire Technology Insight to Build Your Remarkable Career
         </span>
 
-        <Card class={"login-page-card d-flex flex-column"}>
-          <h2 className={"text-center mb-3"}>Login</h2>
+        <Card
+          class={`${css["login-page-card"]} ${css["d-flex"]} ${css["flex-column"]}`}
+        >
+          <h2 className={`${css["text-center"]} ${css["mb-3"]}`}>Login</h2>
           <form onSubmit={this.handleSubmitForm}>
             {error.length === 0 ? (
               ""
             ) : (
-              <div className="alert alert-danger" role="alert">
+              <div
+                className={`${css["alert"]} ${css["alert-danger"]}`}
+                role="alert"
+              >
                 {status === 401 ? (
                   <div>{error}</div>
                 ) : (
@@ -123,7 +131,10 @@ class LoginPage extends Component {
               </div>
             )}
             {top[1] != null && (
-              <div className="alert alert-danger" role="alert">
+              <div
+                className={`${css["alert"]} ${css["alert-danger"]}`}
+                role="alert"
+              >
                 <div>{top[1]}</div>
               </div>
             )}
@@ -147,7 +158,9 @@ class LoginPage extends Component {
               alt={"Password Image"}
               autocomplete={"current-password"}
             ></TextBox>
-            <span className="align-self-end font-size-small p-1"></span>
+            <span
+              className={`${css["align-self-end"]} ${css["font-size-small"]} ${css["p-1"]}`}
+            ></span>
             <input style={{ display: "none" }} type="submit" />
             {loader === true ? (
               <Loader></Loader>
@@ -155,8 +168,8 @@ class LoginPage extends Component {
               <Button onClick={this.handleSubmitForm}>Login</Button>
             )}
           </form>
-          <span className="text-center">
-            <span className="color-primary">Not registered?</span>{" "}
+          <span className={`${css["text-center"]}`}>
+            <span className={`${css["color-primary"]}`}>Not registered?</span>{" "}
             <Link to="/register">Click here!</Link>
           </span>
         </Card>

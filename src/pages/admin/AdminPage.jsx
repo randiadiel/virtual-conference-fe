@@ -7,6 +7,7 @@ import Api from "../../api/Api";
 import UserPage from "../user/UserPage";
 import SideBarAdmin from "../../components/SideBar/SideBarAdmin";
 import SeminarsPage from "../seminars/SeminarsPage";
+import css from "../../styles/index.scss";
 
 class AdminPage extends Component {
   state = {
@@ -28,9 +29,9 @@ class AdminPage extends Component {
       return <React.Fragment></React.Fragment>;
     }
     return (
-      <div className="dashboard-page">
+      <div className={`${css["dashboard-page"]}`}>
         <SideBarAdmin team="Randi"></SideBarAdmin>
-        <Card class="dashboard-page-content">
+        <Card class={`${css["dashboard-page-content"]}`}>
           <Route path={"/admin/user"} component={UserPage}></Route>
           <Route path={"/admin/seminars"} component={SeminarsPage}></Route>
         </Card>

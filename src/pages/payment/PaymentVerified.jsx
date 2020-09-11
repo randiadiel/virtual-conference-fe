@@ -1,11 +1,14 @@
 import React, { Component } from "react";
 import ReactTooltip from "react-tooltip";
 import Button from "../../components/Button/Button";
+import css from "../../styles/index.scss";
 
 export default class PaymentVerified extends Component {
   render() {
     return (
-      <div className="payment-verified verification-await">
+      <div
+        className={`${css["payment-verified"]} ${css["verification-await"]}`}
+      >
         <ReactTooltip></ReactTooltip>
         <h1>Thank You, {this.props.name}</h1>
         <span>Your Payment Has Been Verified.</span>

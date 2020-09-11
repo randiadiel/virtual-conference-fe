@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Loader from "../../components/Loader/Loader";
 import Api from "../../api/Api";
+import css from "../../styles/index.scss";
 
 class SeminarEdit extends Component {
   constructor(props) {
@@ -45,66 +46,71 @@ class SeminarEdit extends Component {
   render() {
     const { title, date, time, speaker, link, loader, errors } = this.state;
     return (
-      <div className="seminar-edit">
+      <div className={`${css["seminar-edit"]}`}>
         {errors != null && (
-          <div className="alert alert-danger mt-2">
-            <ul className="m-0">
+          <div
+            className={`${css["alert"]} ${css["alert-danger"]} ${css["mt-2"]}`}
+          >
+            <ul className={`${css["m-0"]}`}>
               {Object.values(errors).map((e) => (
                 <li key={e}>{e}</li>
               ))}
             </ul>
           </div>
         )}
-        <form className="text-light mt-3" onSubmit={this.handleFormSubmit}>
-          <div className="form-group">
+        <form
+          className={`${css["text-light"]} ${css["mt-3"]}`}
+          onSubmit={this.handleFormSubmit}
+        >
+          <div className={`${css["form-group"]}`}>
             <label for="seminarTitle">Title</label>
             <input
               type="text"
-              className="form-control"
+              className={`${css["form-control"]}`}
               id="seminarTitle"
               value={title}
               name="title"
               onChange={this.onChange}
             />
           </div>
-          <div className="form-group">
+          <div className={`${css["form-group"]}`}>
             <label for="seminarSpeaker">Speaker</label>
             <input
               type="text"
-              className="form-control"
+              className={`${css["form-control"]}`}
               id="seminarSpeaker"
               value={speaker}
               name="speaker"
               onChange={this.onChange}
             />
           </div>
-          <div className="form-group">
+          <div className={`${css["form-group"]}`}>
             <label for="seminarDate">Date</label>
             <input
               type="text"
-              className="form-control"
+              className={`${css["form-control"]}`}
               id="seminarDate"
               value={date}
               name="date"
               onChange={this.onChange}
             />
           </div>
-          <div className="form-group">
+          <div className={`${css["form-group"]}`}>
             <label for="seminarTime">Time</label>
             <input
               type="text"
-              className="form-control"
+              className={`${css["form-control"]}`}
               id="seminarTime"
               value={time}
               name="time"
               onChange={this.onChange}
             />
           </div>
-          <div className="form-group">
+          <div className={`${css["form-group"]}`}>
             <label for="seminarLink">Link</label>
             <input
               type="text"
-              className="form-control"
+              className={`${css["form-control"]}`}
               id="seminarLink"
               value={link}
               name="link"
@@ -114,7 +120,10 @@ class SeminarEdit extends Component {
           {loader === true ? (
             <Loader></Loader>
           ) : (
-            <button type="submit" className="btn btn-primary">
+            <button
+              type="submit"
+              className={`${css["btn"]} ${css["btn-primary"]}`}
+            >
               Submit
             </button>
           )}

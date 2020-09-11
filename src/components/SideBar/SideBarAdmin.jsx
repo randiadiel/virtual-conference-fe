@@ -3,6 +3,7 @@ import { Link, withRouter } from "react-router-dom";
 import Card from "../Card/Index";
 import Logo from "../../assets/Logo/logo-technoscape-virtualcon.png";
 import AuthServices from "../../auth/AuthServices";
+import css from "../../styles/index.scss";
 
 class SideBarAdmin extends Component {
   handleLogout = () => {
@@ -13,16 +14,18 @@ class SideBarAdmin extends Component {
     let path = location.pathname;
     let top = path.split("/");
     return (
-      <Card class="side-bar d-flex flex-column align-items-center">
+      <Card
+        class={`${css["side-bar"]} ${css["d-flex"]} ${css["flex-column"]} ${css["align-items-center"]}`}
+      >
         <img src={Logo} alt="Technoscape Logo" />
         <h4>Admin Panel</h4>
-        <div className="button-container">
+        <div className={`${css["button-container"]}`}>
           <Link
-            className={`side-bar-button ${
+            className={`${css["side-bar-button"]} ${
               top[2] === "user"
-                ? "button-active"
+                ? `${css["button-active"]}`
                 : top[2] === "verification"
-                ? "is-disabled"
+                ? `${css["is-disabled"]}`
                 : ""
             }`}
             to="/admin/user"
@@ -72,11 +75,11 @@ class SideBarAdmin extends Component {
             <span>Users</span>
           </Link>
           <Link
-            className={`side-bar-button ${
+            className={`${css["side-bar-button"]} ${
               top[2] === "seminars"
-                ? "button-active"
+                ? `${css["button-active"]}`
                 : top[2] === "verification"
-                ? "is-disabled"
+                ? `${css["is-disabled"]}`
                 : ""
             }`}
             to="/admin/seminars"
@@ -98,7 +101,7 @@ class SideBarAdmin extends Component {
             <span>Seminars</span>
           </Link>
           <Link
-            className="side-bar-button"
+            className={`${css["side-bar-button"]}`}
             to={"/login"}
             onClick={this.handleLogout}
           >

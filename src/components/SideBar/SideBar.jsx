@@ -3,6 +3,7 @@ import { Link, withRouter } from "react-router-dom";
 import Card from "../Card/Index";
 import Logo from "../../assets/Logo/logo-technoscape-virtualcon.png";
 import AuthServices from "../../auth/AuthServices";
+import css from "../../styles/index.scss";
 
 class SideBar extends Component {
   handleLogout = () => {
@@ -13,20 +14,22 @@ class SideBar extends Component {
     let path = location.pathname;
     let top = path.split("/");
     return (
-      <Card class="side-bar d-flex flex-column align-items-center">
+      <Card
+        class={`${css["side-bar"]} ${css["d-flex"]} ${css["flex-column"]} ${css["align-items-center"]}`}
+      >
         <img src={Logo} alt="Technoscape Logo" />
         <h4>
           Hello, <span>{team}</span>
         </h4>
-        <div className="button-container">
+        <div className={`${css["button-container"]}`}>
           {top[2] !== "verification" ? (
             <React.Fragment>
               <Link
-                className={`side-bar-button ${
+                className={`${css["side-bar-button"]} ${
                   top[2] === "schedule"
-                    ? "button-active"
+                    ? `${css["button-active"]}`
                     : top[2] === "verification"
-                    ? "is-disabled"
+                    ? `${css["is-disabled"]}`
                     : ""
                 }`}
                 to="/dashboard/schedule"
@@ -48,11 +51,11 @@ class SideBar extends Component {
                 <span>Schedules</span>
               </Link>
               <Link
-                className={`side-bar-button ${
+                className={`${css["side-bar-button"]} ${
                   top[2] === "payment"
-                    ? "button-active"
+                    ? `${css["button-active"]}`
                     : top[2] === "verification"
-                    ? "is-disabled"
+                    ? `${css["is-disabled"]}`
                     : ""
                 }`}
                 to="/dashboard/payment"
@@ -139,7 +142,7 @@ class SideBar extends Component {
           )}
 
           <Link
-            className="side-bar-button"
+            className={`${css["side-bar-button"]}`}
             to={"/login"}
             onClick={this.handleLogout}
           >

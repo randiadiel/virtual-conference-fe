@@ -10,6 +10,7 @@ import PaymentPage from "../payment/PaymentPage";
 import AuthServices from "../../auth/AuthServices";
 import InputNim from "../inputnim/InputNim";
 import Api from "../../api/Api";
+import css from "../../styles/index.scss";
 
 class DashboardPage extends Component {
   state = {
@@ -28,7 +29,7 @@ class DashboardPage extends Component {
   render() {
     const { user, success } = this.state;
     return (
-      <div className="dashboard-page">
+      <div className={`${css["dashboard-page"]}`}>
         {user.role_id === 3 &&
         user.Binusian.NIM === null &&
         success === false ? (
@@ -37,7 +38,7 @@ class DashboardPage extends Component {
           <div></div>
         )}
         <SideBar team={user.name}></SideBar>
-        <Card class="dashboard-page-content">
+        <Card class={`${css["dashboard-page-content"]}`}>
           <Route path={"/dashboard/payment"} component={PaymentPage}></Route>
           <Route path={"/dashboard/schedule"} component={SchedulePage}></Route>
           <Route

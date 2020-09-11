@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ReactTooltip from "react-tooltip";
 import UserEdit from "./UserEdit";
+import css from "../../styles/index.scss";
 
 class UserCard extends Component {
   state = {
@@ -45,7 +46,7 @@ class UserCard extends Component {
       reloadUser,
     } = this.props;
     return (
-      <div className="user-card">
+      <div className={`${css["user-card"]}`}>
         <ReactTooltip></ReactTooltip>
         <h2>{name}</h2>
         <p>Payment Status : {status === false ? "Unverified" : "Verified"}</p>
@@ -53,7 +54,7 @@ class UserCard extends Component {
           <React.Fragment>
             <div>
               <a
-                className="badge badge-primary mb-3"
+                className={`${css["badge"]} ${css["badge-primary"]} ${css["mb-3"]}`}
                 href={path}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -70,17 +71,20 @@ class UserCard extends Component {
                   <button
                     id={id}
                     onClick={onVerifyPayment}
-                    className="btn btn-primary mr-2"
+                    className={`${css["btn"]} ${css["btn-primary"]} ${css["mr-2"]}`}
                   >
                     Verify
                   </button>
-                  <button onClick={onCancelPayment} className="btn btn-danger">
+                  <button
+                    onClick={onCancelPayment}
+                    className={`${css["btn"]} ${css["btn-danger"]}`}
+                  >
                     Cancel
                   </button>
                 </div>
               ) : (
                 <button
-                  className="btn btn-warning"
+                  className={`${css["btn"]} ${css["btn-warning"]}`}
                   onClick={onVerifyClick}
                   id={id}
                 >
@@ -99,7 +103,7 @@ class UserCard extends Component {
           <React.Fragment>
             <div>
               <a
-                className="badge badge-primary mb-3 mr-3"
+                className={`${css["badge"]} ${css["badge-primary"]} ${css["mb-3"]} ${css["mr-3"]}`}
                 href={flazz}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -115,20 +119,20 @@ class UserCard extends Component {
                 <button
                   id={id}
                   onClick={onVerifyBinusian}
-                  className="btn btn-primary mr-2"
+                  className={`${css["btn"]} ${css["btn-primary"]} ${css["mr-2"]}`}
                 >
                   Verify
                 </button>
                 <button
                   onClick={() => this.setState({ verifyB: false })}
-                  className="btn btn-danger"
+                  className={`${css["btn"]} ${css["btn-danger"]}`}
                 >
                   Cancel
                 </button>
               </div>
             ) : (
               <button
-                className="btn btn-warning"
+                className={`${css["btn"]} ${css["btn-warning"]}`}
                 onClick={this.onVerifyBinusianPrompt}
                 id={id}
               >
@@ -142,7 +146,7 @@ class UserCard extends Component {
               <React.Fragment>
                 <div>
                   <a
-                    className="badge badge-primary mb-3"
+                    className={`${css["badge"]} ${css["badge-primary"]} ${css["mb-3"]}`}
                     href={flazz}
                     target="_blank"
                     rel="noopener noreferrer"
@@ -153,22 +157,26 @@ class UserCard extends Component {
                   </a>
                 </div>
 
-                <p className="badge badge-success">Verified as Binusian</p>
+                <p className={`${css["badge"]} ${css["badge-success"]}`}>
+                  Verified as Binusian
+                </p>
               </React.Fragment>
             ) : (
-              <p className="badge badge-danger">Not A Binusian</p>
+              <p className={`${css["badge"]} ${css["badge-danger"]}`}>
+                Not A Binusian
+              </p>
             )}
           </span>
         )}
         <hr />
         {editAlert != null && (
-          <div class="alert alert-success" role="alert">
+          <div class={`${css["alert"]} ${css["alert-success"]}`} role="alert">
             {editAlert}
           </div>
         )}
         <button
           id={id}
-          className="btn btn-warning"
+          className={`${css["btn"]} ${css["btn-warning"]}`}
           onClick={onEdit == null ? this.onEditClick : this.onCancelEdit}
         >
           {onEdit != null ? "Cancel Edit" : "Edit"}

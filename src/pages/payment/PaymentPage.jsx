@@ -8,6 +8,7 @@ import Api from "../../api/Api";
 import payment_qr from "../../assets/Payment/payment_qr.jpg";
 import Loader from "../../components/Loader/Loader";
 import PaymentVerified from "./PaymentVerified";
+import css from "../../styles/index.scss";
 
 class PaymentPage extends Component {
   state = {
@@ -98,29 +99,29 @@ class PaymentPage extends Component {
       return <PaymentVerified payment={payment} name={name}></PaymentVerified>;
     }
     return (
-      <div className="payment-page">
+      <div className={`${css["payment-page"]}`}>
         <TitleCard title="Payment">
-          <div className="ticket-card">
+          <div className={`${css["ticket-card"]}`}>
             <h2>Order Details</h2>
-            <div className="title">
+            <div className={`${css["title"]}`}>
               <span>Item</span>
               <span>Amount</span>
             </div>
-            <div className="ticket">
-              <h2 className="text-left">3 Day Pass</h2>
+            <div className={`${css["ticket"]}`}>
+              <h2 className={`${css["text-left"]}`}>3 Day Pass</h2>
               <span>
                 <span>Rp</span>
                 <h2>{flazz === "" || flazz === null ? "50.000" : "35.000"}</h2>
               </span>
             </div>
-            <hr className="white-lines" />
-            <div className="orderid">
+            <hr className={`${css["white-lines"]}`} />
+            <div className={`${css["orderid"]}`}>
               <span>Order ID</span>
               <span>VC-BNCC-4357</span>
             </div>
           </div>
-          <h2 className="header">Payment Method Instructions</h2>
-          <ol className="outer-list">
+          <h2 className={`${css["header"]}`}>Payment Method Instructions</h2>
+          <ol className={`${css["outer-list"]}`}>
             <li>
               Periode Pembayaran : 9 Agustus 2020 hingga 9 September 2020 jam
               21.00
@@ -144,7 +145,9 @@ class PaymentPage extends Component {
                   data-tip="Click to Copy"
                 >
                   {copy !== null ? (
-                    <span className="badge badge-success">{copy}</span>
+                    <span className={`${css["badge"]} ${css["badge-success"]}`}>
+                      {copy}
+                    </span>
                   ) : (
                     "5271675071"
                   )}
@@ -154,7 +157,7 @@ class PaymentPage extends Component {
               <div>Bank : BCA</div>
               <div>Atas Nama : ANNISA VINIDYA LARASATI</div>
               <img
-                className="qr-image w-25"
+                className={`${css["qr-image"]} ${css["w-25"]}`}
                 src={payment_qr}
                 alt="QRCODE - BCA"
               />
@@ -180,19 +183,25 @@ class PaymentPage extends Component {
             </li>
           </ol>
 
-          <h2 className="header">Upload Payment Receipt</h2>
-          <div className="w-100">
-            <div className="row">
-              <div className="col-lg-6 col-xl-4">
+          <h2 className={`${css["header"]}`}>Upload Payment Receipt</h2>
+          <div className={`${css["w-100"]}`}>
+            <div className={`${css["row"]}`}>
+              <div className={`${css["col-lg-6"]} ${css["col-xl-4"]}`}>
                 {error !== "" ? (
-                  <div className="alert alert-danger" role="alert">
+                  <div
+                    className={`${css["alert"]} ${css["alert-danger"]}`}
+                    role="alert"
+                  >
                     {error}
                   </div>
                 ) : (
                   <div></div>
                 )}
                 {alert !== null && (
-                  <div className="alert alert-success" role="alert">
+                  <div
+                    className={`${css["alert"]} ${css["alert-success"]}`}
+                    role="alert"
+                  >
                     {alert}
                   </div>
                 )}
@@ -204,7 +213,7 @@ class PaymentPage extends Component {
                 ></FileUpload>
               </div>
             </div>
-            <div className="file-status">
+            <div className={`${css["file-status"]}`}>
               <div>Size: {file.size} B</div>
               {loader === true ? (
                 <Loader></Loader>

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import css from "../../styles/index.scss";
 
 import ReactTooltip from "react-tooltip";
 import SeminarEdit from "./SeminarEdit";
@@ -20,9 +21,9 @@ class SeminarCard extends Component {
     const { edit } = this.state;
     const { seminar } = this.props;
     return (
-      <div className="seminar-card" key={seminar.id}>
-        <h3 className="seminar-card-title">{seminar.title}</h3>
-        <div className="text-light">
+      <div className={`${css["seminar-card"]}`} key={seminar.id}>
+        <h3 className={`${css["seminar-card-title"]}`}>{seminar.title}</h3>
+        <div className={`${css["text-light"]}`}>
           <h5>{seminar.speaker}</h5>
           <h5>
             {seminar.schedule.date}&nbsp;{seminar.schedule.time}
@@ -30,7 +31,7 @@ class SeminarCard extends Component {
           <ReactTooltip></ReactTooltip>
           <a
             href={seminar.link}
-            className="badge badge-primary mb-3"
+            className={`${css["badge"]} ${css["badge-primary"]} ${css["mb-3"]}`}
             data-tip={seminar.link}
             data-type="light"
           >
@@ -38,7 +39,9 @@ class SeminarCard extends Component {
           </a>
         </div>
         <button
-          className={`btn btn-${edit === true ? "danger" : "warning"}`}
+          className={`${css["btn"]} ${
+            css[`btn-${edit === true ? "danger" : "warning"}`]
+          }`}
           onClick={this.handleEdit}
         >
           {edit === true ? "Cancel Edit" : "Edit"}

@@ -5,6 +5,7 @@ import TextBox from "../../components/TextBox/TextBox";
 import Card from "../../components/Card/Index";
 import Button from "../../components/Button/Button";
 import Api from "../../api/Api";
+import css from "../../styles/index.scss";
 
 class InputNim extends Component {
   state = {
@@ -34,8 +35,10 @@ class InputNim extends Component {
   render() {
     const { NIM, jurusan } = this.state;
     return (
-      <div className="input-nim">
-        <Card class=" d-flex flex-column justify-content-center align-items-center">
+      <div className={`${css["input-nim"]}`}>
+        <Card
+          class={`${css["d-flex"]} ${css["flex-column"]} ${css["justify-content-center"]} ${css["align-items-center"]}`}
+        >
           <form onSubmit={this.handleSubmitForm}>
             <TextBox
               placeholder="NIM"
@@ -56,7 +59,7 @@ class InputNim extends Component {
               alt={"Major Image"}
             ></TextBox>
             <input style={{ display: "none" }} type="submit" />
-            <div className="p-1"></div>
+            <div className={`${css["p-1"]}`}></div>
             <Button onClick={this.handleSubmitForm}>Submit</Button>
           </form>
         </Card>

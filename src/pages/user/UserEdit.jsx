@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Api from "../../api/Api";
 import Loader from "../../components/Loader/Loader";
+import css from "../../styles/index.scss";
 
 export default class UserEdit extends Component {
   constructor(props) {
@@ -58,44 +59,44 @@ export default class UserEdit extends Component {
     return (
       <div>
         <form id={this.props.user.id} onSubmit={this.handleFormSubmit}>
-          <div className="form-group">
+          <div className={`${css["form-group"]}`}>
             <label htmlFor="nameEdit">Name</label>
             <input
               type="text"
-              className="form-control"
+              className={`${css["form-control"]}`}
               id="nameEdit"
               name="name"
               value={name}
               onChange={this.onChange}
             />
           </div>
-          <div className="form-group">
+          <div className={`${css["form-group"]}`}>
             <label htmlFor="emailEdit">Email address</label>
             <input
               type="email"
-              className="form-control"
+              className={`${css["form-control"]}`}
               id="emailEdit"
               name="email"
               value={email}
               onChange={this.onChange}
             />
           </div>
-          <div className="form-group">
+          <div className={`${css["form-group"]}`}>
             <label htmlFor="lineidEdit">Line</label>
             <input
               type="text"
-              className="form-control"
+              className={`${css["form-control"]}`}
               id="lineidEdit"
               name="lineid"
               value={lineid}
               onChange={this.onChange}
             />
           </div>
-          <div className="form-group">
+          <div className={`${css["form-group"]}`}>
             <label htmlFor="phoneEdit">Phone</label>
             <input
               type="text"
-              className="form-control"
+              className={`${css["form-control"]}`}
               id="phoneEdit"
               name="phone"
               value={phone}
@@ -104,22 +105,22 @@ export default class UserEdit extends Component {
           </div>
           {role_id === 3 && NIM !== null && (
             <React.Fragment>
-              <div className="form-group">
+              <div className={`${css["form-group"]}`}>
                 <label htmlFor="nimEdit">NIM</label>
                 <input
                   type="text"
-                  className="form-control"
+                  className={`${css["form-control"]}`}
                   id="nimEdit"
                   name="NIM"
                   value={NIM}
                   onChange={this.onChange}
                 />
               </div>
-              <div className="form-group">
+              <div className={`${css["form-group"]}`}>
                 <label htmlFor="jurusanEdit">Jurusan</label>
                 <input
                   type="text"
-                  className="form-control"
+                  className={`${css["form-control"]}`}
                   id="jurusanEdit"
                   name="jurusan"
                   value={jurusan}
@@ -130,7 +131,7 @@ export default class UserEdit extends Component {
           )}
           {loader === false ? (
             <input
-              className="btn btn-warning"
+              className={`${css["btn"]} ${css["btn-warning"]}`}
               type="submit"
               value="Confirm"
             ></input>

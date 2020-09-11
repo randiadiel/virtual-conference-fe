@@ -1,12 +1,13 @@
 import React, { Component } from "react";
+import css from "../../styles/index.scss";
 
 class FileUpload extends Component {
   render() {
     const { onChange, reference, label, id } = this.props;
     return (
-      <div className="file-upload custom-file">
+      <div className={`${css["file-upload"]} ${css["custom-file"]}`}>
         <input
-          className="custom-file-input"
+          className={`${css["custom-file-input"]}`}
           type="file"
           name="image"
           id={id}
@@ -15,7 +16,7 @@ class FileUpload extends Component {
           ref={reference}
         />
         <label
-          className="custom-file-label"
+          className={`${css["custom-file-label"]}`}
           htmlFor="customFile"
           aria-describedby="inputGroupFileAddon02"
         >

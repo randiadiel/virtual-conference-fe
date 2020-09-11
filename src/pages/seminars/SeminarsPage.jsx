@@ -3,6 +3,7 @@ import TitleCard from "../../components/TitleCard/TitleCard";
 import SeminarCard from "./SeminarCard";
 import Loader from "../../components/Loader/Loader";
 import API from "../../api/Api";
+import css from "../../styles/index.scss";
 
 class SeminarsPage extends Component {
   state = {
@@ -19,7 +20,7 @@ class SeminarsPage extends Component {
   render() {
     const { seminars } = this.state;
     return (
-      <div className="seminars-page">
+      <div className={`${css["seminars-page"]}`}>
         <TitleCard title="Seminars">
           <React.Fragment>
             {seminars != null ? (
