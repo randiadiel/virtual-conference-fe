@@ -2,7 +2,8 @@ import axios from "axios";
 import { API } from "../api/ApiConfig";
 
 class AuthServices {
-  login(credentials) {
+  login(credentials, sourceToken) {
+    credentials = { ...credentials, cancelToken: sourceToken };
     const promise = new Promise((resolve, reject) => {
       axios.post(`${API.BASE_URL}/auth/login`, credentials).then(
         (res) => {

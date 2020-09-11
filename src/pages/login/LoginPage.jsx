@@ -10,6 +10,7 @@ import Card from "../../components/Card/Index";
 import Button from "../../components/Button/Button";
 import { Redirect, Link } from "react-router-dom";
 import Loader from "../../components/Loader/Loader";
+import Axios from "axios";
 
 class LoginPage extends Component {
   state = {
@@ -19,11 +20,12 @@ class LoginPage extends Component {
     error: [],
     loader: false,
   };
+  CancelToken = Axios.CancelToken;
+  source = this.CancelToken.source();
 
   componentDidMount() {}
   clearLocal = () => {
     AuthServices.logout();
-    alert("done");
   };
 
   onChange = (e) => {
@@ -34,12 +36,13 @@ class LoginPage extends Component {
   handleSubmitForm = async (e) => {
     e.preventDefault();
     this.setState({ loader: true });
+
     const { email, password } = this.state;
     const credential = {
       email,
       password,
     };
-    const promise = await AuthServices.login(credential);
+    const promise = await AuthServices.login(credential, this.source.token);
     const { status } = promise;
     if (status === 200) {
       localStorage.setItem("userInfo", JSON.stringify(promise.data.original));
@@ -70,9 +73,16 @@ class LoginPage extends Component {
       });
     }
   };
-
+  componentWillUnmount() {
+    this.source.cancel("Operation canceled by the user.");
+  }
   render() {
     const { email, password, isLoggedIn, error, status, loader } = this.state;
+    let path = this.props.location.search;
+    let top = [];
+    if (path != null) {
+      top = path.split("?");
+    }
     if (isLoggedIn === "verification")
       return <Redirect to="/dashboard/verification"></Redirect>;
     if (isLoggedIn === "admin") return <Redirect to="/admin/user"></Redirect>;
@@ -112,6 +122,11 @@ class LoginPage extends Component {
                 )}
               </div>
             )}
+            {top[1] != null && (
+              <div className="alert alert-danger" role="alert">
+                <div>{top[1]}</div>
+              </div>
+            )}
             <TextBox
               placeholder="Email"
               name={"email"}
@@ -120,6 +135,7 @@ class LoginPage extends Component {
               onChange={this.onChange}
               icon={EmailImage}
               alt={"Group Image"}
+              autocomplete={"username"}
             ></TextBox>
             <TextBox
               placeholder="Password"
@@ -129,6 +145,7 @@ class LoginPage extends Component {
               onChange={this.onChange}
               icon={PasswordImage}
               alt={"Password Image"}
+              autocomplete={"current-password"}
             ></TextBox>
             <span className="align-self-end font-size-small p-1"></span>
             <input style={{ display: "none" }} type="submit" />

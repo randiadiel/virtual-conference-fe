@@ -1,18 +1,27 @@
 import React, { Component } from "react";
 
 class TextBox extends Component {
-
   render() {
-    const {placeholder, onChange, value,name,type, icon, alt } = this.props;
+    const {
+      placeholder,
+      onChange,
+      value,
+      name,
+      type,
+      icon,
+      alt,
+      autocomplete,
+    } = this.props;
     return (
       <div className="text-box">
         <img src={icon} alt={alt} />
         <input
-          type= {type}
+          type={type}
           placeholder={placeholder}
-          onChange = {onChange}
+          onChange={onChange}
           value={value}
           name={name}
+          autoComplete={autocomplete}
         />
       </div>
     );

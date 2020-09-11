@@ -138,7 +138,11 @@ class SideBar extends Component {
             <React.Fragment></React.Fragment>
           )}
 
-          <Link className="side-bar-button" onClick={this.handleLogout}>
+          <Link
+            className="side-bar-button"
+            to={"/login"}
+            onClick={this.handleLogout}
+          >
             <svg
               id="XMLID_2_"
               xmlns="http://www.w3.org/2000/svg"
